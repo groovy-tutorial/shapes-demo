@@ -1,6 +1,6 @@
 # Shapes example
-An introductory project that demonstrates aspects of OO-programming in Groovy. The code here is described in
-[The Groovy 2 Tutorial](https://leanpub.com/groovytutorial).
+An introductory project that demonstrates aspects of OO-programming in Groovy. The code here is described in the
+[The Groovy 2 Tutorial](https://leanpub.com/groovytutorial) book.
 
 This codebase contains:
 
@@ -24,8 +24,7 @@ For Windows:
 
     gradlew.bat run
 
-You don't need to download anything for this to work
-- the [Gradle wrapper](https://docs.gradle.org/current/userguide/wrapper_plugin.html) will download everything you need.
+You don't need to download anything for this to work as the [Gradle wrapper](https://docs.gradle.org/current/userguide/wrapper_plugin.html) will download everything you need.
 
 The Gradle build also provides a number of interesting options. In Gradle these are called _tasks_ and you can
 see all of the available tasks by running `./gradlew tasks`. Here are a few tasks worth trying out:
@@ -71,13 +70,16 @@ To run the code using `groovy`:
 
     groovy -classpath src/main/groovy/ src/main/groovy/org/groovytutorial/shapes/app/Main.groovy
 
-To build the code using `groovyc`:
+To compile the classes to bytecode and run with Java we need to use `groovyc`:
 
     groovyc -d classes src/main/groovy/org/groovytutorial/shapes/*.groovy src/main/groovy/org/groovytutorial/shapes/app/*.groovy src/main/groovy/org/groovytutorial/shapes/triangle/*.groovy
+    java -cp lib/groovy-all-2.4.4.jar:classes/ org.groovytutorial.shapes.app.Main
 
 To create a Jar:
 
     groovyc -d classes src/main/groovy/org/groovytutorial/shapes/*.groovy src/main/groovy/org/groovytutorial/shapes/app/*.groovy src/main/groovy/org/groovytutorial/shapes/triangle/*.groovy
-    jar -cvfe shapes-demo.jar org.groovytutorial.shapes.app.Main -C output .
+    jar cvf lib/Shapes.jar -C classes .
 
-<
+To run the Jar:
+
+    java -cp lib/groovy-all-2.4.4.jar:lib/Shapes.jar org.groovytutorial.shapes.app.Main

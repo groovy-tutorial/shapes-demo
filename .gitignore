@@ -98,4 +98,7 @@ local.properties
 
 #Project-specific ignores
 *.class
+/lib/Shapes.jar
 classes/
+
+.DS_Store
