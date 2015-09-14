@@ -1,17 +1,30 @@
 package org.groovytutorial.shapes.triangle
 
-import org.groovytutorial.shapes.Triangle
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 
-class TriangleEquilateral extends Triangle {
-    static final String TRIANGLE_TYPE = 'EQUILATERAL'
+/**
+ * A triangle with three equal sides
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Equilateral_triangle">Wikipedia - Equilateral triangle</a>
+ */
+@EqualsAndHashCode(callSuper = true)
+@ToString(includeNames = true, includeFields = true, includePackage = true, includeSuper = true)
+final class TriangleEquilateral extends TriangleIsosceles {
+    static final String TRIANGLE_TYPE = 'Equilateral'
 
     TriangleEquilateral(Number sideA) {
-        super(sideA, sideA, sideA)
+        super(sideA, sideA)
     }
 
     @Override
-    protected void calculateArea() {
-        area = Math.sqrt(3) / 4 * this.sides.a**2
+    Number getArea() {
+        Math.sqrt(3) / 4 * this.sides.a**2
+    }
+
+    @Override
+    String getDisplayInfo() {
+        "$TRIANGLE_TYPE ${super.getDisplayInfo()}"
     }
 }
 

@@ -18,9 +18,9 @@ class RectangleTest extends Specification {
         r.area == area
 
         where: "the dimensions and resulting measurements are"
-        length | width || perimeter | area
-        2 | 2 || 8 | 4
-        10 | 7 || 34 | 70
-        6 | 100 || 212 | 600
+        length  | width || perimeter | area
+        2       | 2     || 8         | 4
+        10      | 7     || 34        | 70
+        6       | 100   || 212       | 600
     }
 }

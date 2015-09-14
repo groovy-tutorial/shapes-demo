@@ -1,26 +1,30 @@
 package org.groovytutorial.shapes.triangle
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 import org.groovytutorial.shapes.Triangle
 
-class TriangleRightAngled extends Triangle {
+@EqualsAndHashCode(callSuper = true)
+@ToString(includeNames = true, includeFields = true, includePackage = true, includeSuper = true)
+final class TriangleRightAngled extends Triangle {
     static final String TRIANGLE_TYPE = 'Right-angled'
 
     TriangleRightAngled(Number sideA, Number sideB,
-                        Number sideC = calculateSideC(sideA, sideB)) {
+                        Number sideC = calculateHypotenuse(sideA, sideB)) {
         super(sideA, sideB, sideC)
     }
 
-    static Number calculateSideC(Number sideA, Number sideB) {
+    static Number calculateHypotenuse(Number sideA, Number sideB) {
         Math.sqrt(sideA**2 + sideB**2)
     }
 
     @Override
-    protected void calculateArea() {
-        area = 0.5 * sides.a * sides.b
+    Number getArea() {
+        0.5 * sides.a * sides.b
     }
 
     @Override
     String getDisplayInfo() {
-        super.getDisplayInfo()
+        "$TRIANGLE_TYPE ${super.getDisplayInfo()}"
     }
 }

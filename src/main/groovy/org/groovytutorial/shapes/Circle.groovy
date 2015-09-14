@@ -1,42 +1,52 @@
 package org.groovytutorial.shapes
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
 import static java.lang.Math.PI
 
 /**
- *
+ * Describes a circle
+ * @author Duncan Dickinson
  */
-class Circle extends BasicTwoDimensionalShape {
+@EqualsAndHashCode(includes = 'radius')
+@ToString(includeNames = true, includeFields = true, includePackage = true)
+final class Circle implements TwoDimensionalShape {
     static final String SHAPE_NAME = 'Circle'
 
     final Number radius
-    final Number diameter
+    final Number perimeter
+    final Number area
 
+    /**
+     *
+     * @param radius the radius of the circle
+     */
     Circle(Number radius) {
         this.radius = radius
-        this.diameter = this.radius * 2
+        this.perimeter = calculatePerimeter(radius)
+        this.area = calculateArea(radius)
     }
 
-    @Override
-    protected void calculatePerimeter() {
-        this.perimeter = this.diameter * PI
+    static Number calculateCircumference(Number radius) {
+        calculatePerimeter(radius)
     }
 
-    @Override
-    protected void calculateArea() {
-        this.area = this.radius**2 * PI
+    static Number calculatePerimeter(Number radius) {
+        2 * PI * radius
+    }
+
+    static Number calculateArea(Number radius) {
+        PI * radius**2
+    }
+
+    static Number calculateDiameter(Number radius) {
+        radius * 2
     }
 
     @Override
     String getDisplayInfo() {
-        "${super.displayInfo}: radius = $radius; diameter = $diameter; circumference = ${circumference.trunc(4)}; area = ${area.trunc(4)}"
-    }
-
-    Number getRadius() {
-        radius
-    }
-
-    Number getDiameter() {
-        diameter
+        "$SHAPE_NAME: radius = $radius; diameter = $diameter; circumference = ${circumference.trunc(4)}; area = ${area.trunc(4)}"
     }
 
     /**
@@ -45,5 +55,26 @@ class Circle extends BasicTwoDimensionalShape {
      */
     Number getCircumference() {
         perimeter
+    }
+
+    /**
+     * A pseudo getter
+     * @return the diameter
+     */
+    Number getDiameter() {
+        calculateDiameter(this.radius)
+    }
+
+    /**
+     *
+     * @param obj
+     * @return true if obj is a Circle and has the same radius as this instance, false otherwise
+     */
+    @Override
+    boolean equals(Object obj) {
+        if (obj instanceof Circle) {
+            return this.radius == obj.radius
+        }
+        false
     }
 }

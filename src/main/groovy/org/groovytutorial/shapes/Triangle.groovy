@@ -1,32 +1,22 @@
 package org.groovytutorial.shapes
 
-/**
- *
- */
-class Triangle extends BasicTwoDimensionalShape {
-    static final String SHAPE_NAME = 'Triangle'
-    static final String TRIANGLE_TYPE = 'Generic'
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 
-    final Map sides
+/**
+ * Describes a generic triangle.
+ *
+ * For more specific types, use a class from {@link org.groovytutorial.shapes.triangle}
+ */
+@EqualsAndHashCode(includes = 'sides')
+@ToString(includeNames = true, includeFields = true, includePackage = true)
+class Triangle implements TwoDimensionalShape, Sides {
+    static final String SHAPE_NAME = 'Triangle'
 
     Triangle(Number sideA, Number sideB, Number sideC) {
-        sides = [ a: sideA,
-                  b: sideB,
-                  c: sideC ].asImmutable()
-    }
-
-    Map getSides() {
-        sides
-    }
-
-    @Override
-    protected void calculatePerimeter() {
-        Number sum = 0
-
-        for (Number side in sides.values()) {
-            sum += side
-        }
-        perimeter = sum
+        sides.a = sideA
+        sides.b = sideB
+        sides.c = sideC
     }
 
     /**
@@ -34,19 +24,18 @@ class Triangle extends BasicTwoDimensionalShape {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Heron%27s_formula">Wikipedia - Heron's Formula</a>
      */
+    static calculateHeronsFormula(Number sideA, Number sideB, Number sideC){
+        Number s = (sideA + sideB + sideC) / 2
+        Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC))
+    }
+
     @Override
-    protected void calculateArea() {
-
-        Number a, b, c
-        (a, b, c) = [ sides.a, sides.b, sides.c ]
-
-        Number s = (a + b + c) / 2
-
-        area = Math.sqrt(s * (s - a) * (s - b) * (s - c))
+    Number getArea() {
+        calculateHeronsFormula(sides.a, sides.b, sides.c)
     }
 
     @Override
     String getDisplayInfo() {
-        "$SHAPE_NAME - $TRIANGLE_TYPE: Side A = ${sides.a}; Side B = ${sides.b}; Side C = ${sides.c}; perimeter = $perimeter; area = ${area}"
+        "$SHAPE_NAME: Side A = ${sides.a}; Side B = ${sides.b}; Side C = ${sides.c}; perimeter = $perimeter; area = ${area}"
     }
 }

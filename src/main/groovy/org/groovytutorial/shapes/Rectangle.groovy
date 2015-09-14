@@ -1,44 +1,26 @@
 package org.groovytutorial.shapes
 
-class Rectangle extends BasicTwoDimensionalShape {
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@EqualsAndHashCode(includes = 'length,width')
+@ToString(includeNames = true, includeFields = true, includePackage = true)
+class Rectangle implements TwoDimensionalShape, Sides {
 
     static final String SHAPE_NAME = 'Rectangle'
 
-    final Number length
-    final Number width
+    final Number area
 
-    /**
-     * The default constructor - not useful
-     */
-    private Rectangle() {
-
-    }
-
-    Rectangle(Number length, Number width) throws IllegalArgumentException {
-        this.length = length
-        this.width = width
-    }
-
-    @Override
-    protected void calculatePerimeter() {
-        perimeter = (this.length + this.width) * 2
-    }
-
-    @Override
-    protected void calculateArea() {
-        area = this.length * this.width
+    Rectangle(Number length, Number width) {
+        sides.a = length
+        sides.b = width
+        sides.c = length
+        sides.d = width
+        this.area = sides.a * sides.b
     }
 
     @Override
     String getDisplayInfo() {
-        "${super.displayInfo}: length = $length; width = $width; perimeter = $perimeter; area = $area"
-    }
-
-    Number getLength() {
-        length
-    }
-
-    Number getWidth() {
-        width
+        "$SHAPE_NAME: length = ${sides.a}; width = ${sides.b}; perimeter = $perimeter; area = $area"
     }
 }

@@ -19,5 +19,7 @@ def shapes = [
 
 shapes.each {
     println it.displayInfo
+    println "  - toString(): ${it.toString()}"
     println()
 }
+
