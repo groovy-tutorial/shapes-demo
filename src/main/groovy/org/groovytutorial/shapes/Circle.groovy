@@ -14,40 +14,75 @@ import groovy.transform.ToString
 final class Circle implements TwoDimensionalShape {
     static final String SHAPE_NAME = 'Circle'
 
+    /** The radius of the circle */
     final BigDecimal radius
+
+    /** The circle's perimeter (circumference) */
     final BigDecimal perimeter
+
+    /** The circle's area */
     final BigDecimal area
 
     /**
      *
-     * @param radius the radius of the circle
+     * @param radius the radius of the circle (must be a positive number)
+     * @throws IllegalArgumentException if radius <= 0
      */
-    Circle(BigDecimal radius) {
+    Circle(BigDecimal radius) throws IllegalArgumentException {
+        ShapeUtil.checkSideException(radius)
         this.radius = radius
         this.perimeter = calculatePerimeter(radius)
         this.area = calculateArea(radius)
     }
 
-    static BigDecimal calculateCircumference(Number radius) {
+    /**
+     * Helper function - defers to calculatePerimeter
+     * @see #calculatePerimeter(Number)
+     * @param radius
+     * @return the circumference (perimeter)
+     * @throws IllegalArgumentException if radius <= 0
+     */
+    static BigDecimal calculateCircumference(Number radius) throws IllegalArgumentException {
         calculatePerimeter(radius)
     }
 
-    static BigDecimal calculatePerimeter(Number radius) {
+    /**
+     * Calculates the perimeter of a circle using the formula: p = 2*Pi*r
+     * @param radius
+     * @return the perimeter
+     * @throws IllegalArgumentException if radius <= 0
+     */
+    static BigDecimal calculatePerimeter(Number radius) throws IllegalArgumentException {
+        ShapeUtil.checkSideException(radius)
         (2 * PI * radius) as BigDecimal
     }
 
-    static BigDecimal calculateArea(Number radius) {
+    /**
+     * Calculates the area of a circle using the formula: a = Pi*r^2
+     * @param radius
+     * @return the area
+     * @throws IllegalArgumentException if radius <= 0
+     */
+    static BigDecimal calculateArea(Number radius) throws IllegalArgumentException {
+        ShapeUtil.checkSideException(radius)
         (PI * radius**2) as BigDecimal
     }
 
-    static BigDecimal calculateDiameter(Number radius) {
+    /**
+     * Calculates the circle's diameter using the formula: d = 2r
+     * @param radius
+     * @return the diameter
+     * @throws IllegalArgumentException if radius <= 0
+     */
+    static BigDecimal calculateDiameter(Number radius) throws IllegalArgumentException {
+        ShapeUtil.checkSideException(radius)
         (radius * 2) as BigDecimal
     }
 
     @Override
     String getDisplayInfo() {
         "$SHAPE_NAME: radius = $radius; diameter = $diameter; \
-circumference = ${circumference.trunc(4)}; area = ${area.trunc(4)}"
+circumference = ${circumference}; area = ${area}"
     }
 
     /**

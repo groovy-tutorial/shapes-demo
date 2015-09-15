@@ -5,6 +5,8 @@ package org.groovytutorial.shapes
  *
  * @see <a href="https://en.wikipedia.org/wiki/List_of_two-dimensional_geometric_shapes">
  *     Wikipedia: List of two-dimensional geometric shapes</a>
+ *
+ * @author Duncan Dickinson
  */
 interface TwoDimensionalShape {
 
@@ -23,7 +25,7 @@ interface TwoDimensionalShape {
     BigDecimal getArea()
 
     /**
-     * A handy display method
+     * A handy display string
      * @return a text representation of the shape
      */
     String getDisplayInfo()

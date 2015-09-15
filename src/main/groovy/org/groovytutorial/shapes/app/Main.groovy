@@ -22,4 +22,3 @@ shapes.each {
     println "  - toString(): ${it.toString()}"
     println()
 }
-

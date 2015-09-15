@@ -73,4 +73,27 @@ class CircleTest extends Specification {
         10 || 20 | 62.83185g | 314.1593g
         6 || 12 | 37.69911g | 113.0973g
     }
+
+    def "Ensure that a circle can only be defined with a positive numeric radius"() {
+        setup:
+        Exception exception //just to hold the expected exception
+
+        when: "A rectangle is set up with a bad length and/or width"
+        try {
+            Circle r = new Circle(radius)
+        } catch (e) {
+            exception = e
+        }
+
+        then: "Expect one of two exceptions"
+        exception?.class in [IllegalArgumentException, GroovyRuntimeException]
+
+        where: "the dimensions and resulting measurements are"
+        radius || _
+        -2 || _
+        -6 || _
+        'rabbit' || _
+        false || _
+        UUID.randomUUID() || _
+    }
 }

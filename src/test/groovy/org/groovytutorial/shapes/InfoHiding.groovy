@@ -5,9 +5,8 @@ import spock.lang.Specification
 import spock.lang.Subject
 
 @Subject(Sides)
-@Narrative("""Checks the Sides trait (via a Rectangle)
-I want to make sure that the Sides fields are protected from externally meddling
-""")
+@Narrative("""Checks the Sides trait.
+I want to make sure that the Sides fields are protected from externally meddling""")
 class InfoHiding extends Specification {
 
     def "The sides trait's map of sides shouldn't be externally mutable - Rectangle version"() {
@@ -43,7 +42,7 @@ class InfoHiding extends Specification {
         then: "it doesn't actually work so the sides and perimeter are correct but an exception was raised"
         20 == s.perimeter
         [ a: 5, b: 5, c: 5, d: 5 ] == s.sideMap
-        ReadOnlyPropertyException == exception.class
+        ReadOnlyPropertyException == exception?.class
     }
 
     def "The sides trait's map of sides shouldn't be externally mutable - Triangle version"() {
@@ -61,7 +60,7 @@ class InfoHiding extends Specification {
         then: "it doesn't actually work so the sides and perimeter are correct but an exception was raised"
         15 == s.perimeter
         [ a: 5, b: 5, c: 5 ] == s.sideMap
-        ReadOnlyPropertyException == exception.class
+        ReadOnlyPropertyException == exception?.class
     }
 
     def "The sides trait's map of sides can't be reassigned"() {
@@ -77,7 +76,7 @@ class InfoHiding extends Specification {
         }
 
         then: "the correct exception and s.sideMap hasn't changed"
-        ReadOnlyPropertyException == exception.class
+        ReadOnlyPropertyException == exception?.class
         [ a: 5, b: 10, c: 5, d: 10 ] == s.sideMap
     }
 
@@ -94,7 +93,7 @@ class InfoHiding extends Specification {
         }
 
         then: "the correct exception and the perimeter hasn't changed"
-        ReadOnlyPropertyException == exception.class
+        ReadOnlyPropertyException == exception?.class
         30 == s.perimeter
     }
 }

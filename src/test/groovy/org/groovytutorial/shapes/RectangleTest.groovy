@@ -26,4 +26,28 @@ class RectangleTest extends Specification {
         10      | 7     || 34        | 70
         6       | 100   || 212       | 600
     }
+
+    def "Ensure that a rectangle can only be defined with a positive numeric length and width"() {
+        setup:
+        Exception exception //just to hold the expected exception
+
+        when: "A rectangle is set up with a bad length and/or width"
+        try {
+            Rectangle r = new Rectangle(length, width)
+        } catch (e) {
+            exception = e
+        }
+
+        then: "Expect one of two exceptions"
+        exception?.class in [IllegalArgumentException, GroovyRuntimeException]
+
+        where: "the dimensions and resulting measurements are"
+        length   | width
+        -2       | 2
+        10       | -7
+        -6       | -100
+        'rabbit' | 1
+        1        | false
+        UUID.randomUUID() | 'apple'
+    }
 }

@@ -3,15 +3,27 @@ package org.groovytutorial.shapes
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
+/**
+ * Describes a rectangle
+ *
+ * @author Duncan Dickinson
+ */
 @EqualsAndHashCode(includes = 'length,width')
 @ToString(includeNames = true, includeFields = true, includePackage = true)
 class Rectangle implements TwoDimensionalShape, Sides {
 
     static final String SHAPE_NAME = 'Rectangle'
 
+    /** The area of the rectangle */
     final BigDecimal area
 
-    Rectangle(Number length, Number width) {
+    /**
+     *
+     * @param length
+     * @param width
+     * @throws IllegalArgumentException if one of the sides <= 0
+     */
+    Rectangle(Number length, Number width) throws IllegalArgumentException {
         a = length
         b = width
         c = length
