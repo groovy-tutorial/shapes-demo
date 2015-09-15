@@ -13,14 +13,14 @@ interface TwoDimensionalShape {
      * @see <a href="https://en.wikipedia.org/wiki/Perimeter">Wikipedia: Perimeter</a>
      * @return the perimeter of the shape
      */
-    Number getPerimeter()
+    BigDecimal getPerimeter()
 
     /**
      * The extent of a 2D shape in a plane
      * @see <a href="https://en.wikipedia.org/wiki/Area">Wikipedia: Area</a>
      * @return the area of the shape
      */
-    Number getArea()
+    BigDecimal getArea()
 
     /**
      * A handy display method

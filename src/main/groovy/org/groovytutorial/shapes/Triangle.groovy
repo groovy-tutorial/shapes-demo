@@ -8,15 +8,19 @@ import groovy.transform.ToString
  *
  * For more specific types, use a class from {@link org.groovytutorial.shapes.triangle}
  */
-@EqualsAndHashCode(includes = 'sides')
+@EqualsAndHashCode(includes = 'sideMap')
 @ToString(includeNames = true, includeFields = true, includePackage = true)
 class Triangle implements TwoDimensionalShape, Sides {
     static final String SHAPE_NAME = 'Triangle'
 
-    Triangle(Number sideA, Number sideB, Number sideC) {
-        sides.a = sideA
-        sides.b = sideB
-        sides.c = sideC
+    Triangle(Number a, Number b, Number c) {
+        this.a = a
+        this.b = b
+        this.c = c
+
+        //Calling this causes the Sides trait to calculate the perimeter
+        //and lock off its sideMap
+        this.perimeter
     }
 
     /**
@@ -24,18 +28,19 @@ class Triangle implements TwoDimensionalShape, Sides {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Heron%27s_formula">Wikipedia - Heron's Formula</a>
      */
-    static calculateHeronsFormula(Number sideA, Number sideB, Number sideC){
-        Number s = (sideA + sideB + sideC) / 2
-        Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC))
+    static BigDecimal calculateArea(Number a, Number b, Number c) {
+        Number s = (a + b + c) / 2
+        Math.sqrt(s * (s - a) * (s - b) * (s - c))
     }
 
     @Override
-    Number getArea() {
-        calculateHeronsFormula(sides.a, sides.b, sides.c)
+    BigDecimal getArea() {
+        calculateArea(a, b, c)
     }
 
     @Override
     String getDisplayInfo() {
-        "$SHAPE_NAME: Side A = ${sides.a}; Side B = ${sides.b}; Side C = ${sides.c}; perimeter = $perimeter; area = ${area}"
+        "$SHAPE_NAME: Side A = $a; Side B = $b; \
+Side C = $c; perimeter = $perimeter; area = $area"
     }
 }

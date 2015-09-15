@@ -12,8 +12,10 @@ class SquareTest extends Specification {
         Square s = new Square(length)
 
         expect: "that the fields are set correctly"
-        s.length == length
-        s.length == s.width
+        s.a == length
+        s.b == length
+        s.c == length
+        s.d == length
         s.perimeter == perimeter
         s.area == area
 

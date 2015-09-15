@@ -9,22 +9,26 @@ import org.groovytutorial.shapes.Triangle
 final class TriangleRightAngled extends Triangle {
     static final String TRIANGLE_TYPE = 'Right-angled'
 
-    TriangleRightAngled(Number sideA, Number sideB,
-                        Number sideC = calculateHypotenuse(sideA, sideB)) {
-        super(sideA, sideB, sideC)
+    TriangleRightAngled(Number a, Number b,
+                        Number c = calculateHypotenuse(a, b)) {
+        super(a, b, c)
     }
 
-    static Number calculateHypotenuse(Number sideA, Number sideB) {
-        Math.sqrt(sideA**2 + sideB**2)
+    static final Number calculateHypotenuse(Number a, Number b) {
+        Math.sqrt(a**2 + b**2)
+    }
+
+    static calculateArea(Number a, Number b) {
+        0.5 * a * b
     }
 
     @Override
-    Number getArea() {
-        0.5 * sides.a * sides.b
+    BigDecimal getArea() {
+        calculateArea(a, b)
     }
 
     @Override
     String getDisplayInfo() {
-        "$TRIANGLE_TYPE ${super.getDisplayInfo()}"
+        "$TRIANGLE_TYPE ${super.displayInfo}"
     }
 }

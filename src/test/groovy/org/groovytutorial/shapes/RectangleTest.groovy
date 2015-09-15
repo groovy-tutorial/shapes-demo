@@ -12,8 +12,11 @@ class RectangleTest extends Specification {
         Rectangle r = new Rectangle(length, width)
 
         expect: "that the fields are set correctly"
-        r.length == length
-        r.width == width
+        r.a == length
+        r.b == width
+        r.c == length
+        r.d == width
+
         r.perimeter == perimeter
         r.area == area
 
