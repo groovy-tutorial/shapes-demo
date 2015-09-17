@@ -143,6 +143,6 @@ githubPages {
         from publishDirPath
     }
     publishGhPages {
-        dependsOn clean, collateForPublication
+        dependsOn collateForPublication
     }
 }
