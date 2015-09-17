@@ -1,57 +1,148 @@
 plugins {
-    //This is a handy plugin as it rolls everything into a single Jar file
-    //See https://github.com/johnrengelman/shadow/
+    id 'groovy'
+    id 'application'
+    id 'build-dashboard'
+    id 'project-report'
+    id 'codenarc'
+
+    //This is a handy plugin as it rolls everything into a single Jar file: https://github.com/johnrengelman/shadow/
     id 'com.github.johnrengelman.shadow' version '1.2.2'
+
+    //The idea and eclipse plugins provide helpers for 2 popular IDEs
+    id 'eclipse'
+    id 'idea'
+
+    //These plugins are used to generate this tutorial
+    id "org.asciidoctor.gradle.asciidoctor" version "1.5.1"
+    id "org.ajoberstar.github-pages" version "1.3.0"
 }
 
-apply plugin: 'groovy'
-apply plugin: 'codenarc'
-apply plugin: 'application'
-apply plugin: 'build-dashboard'
-
-//The idea and eclipse plugins provide helpers for 2 popular IDEs
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-
 repositories {
-    //The JCenter repository holds libraries that we can use in our code
-    //See: https://bintray.com/bintray/jcenter
+    //The JCenter repository holds libraries that we can use in our code: https://bintray.com/bintray/jcenter
     jcenter()
 }
 
-group 'org.groovytutorial.shapes'
-version '1.0-SNAPSHOT'
+project.ext {
+    groovyVersion = '2.4.4'
+    spockVersion = '1.0-groovy-2.4'
+    gradleVersion = '2.7'
+    codeNarcVersion = '0.24'
+}
+
+//project.name is set in the settings.gradle file using: rootProject.name = 'shapes-demo'
+project.with {
+    group 'org.groovytutorial.shapes'
+    version '1.0-SNAPSHOT'
+    description = 'A tutorial covering basic Gradle usage and OO-development in Groovy'
+
+    defaultTasks 'run'
+
+    //This is the class that is called when using the "run" task
+    mainClassName = 'org.groovytutorial.shapes.app.Main'
+
+    wrapper.gradleVersion = "$gradleVersion"
+}
+
 
 dependencies {
     //This brings in the Groovy system:
-    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: "$project.groovyVersion"
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: "$groovyVersion"
 
     //This brings in the Spock Testing Framework for the test stage
-    testCompile group: 'org.spockframework', name: 'spock-core', version: "$project.spockVersion"
+    testCompile group: 'org.spockframework', name: 'spock-core', version: "$spockVersion"
 }
 
-//This is the class that is called when using the "run" task
-mainClassName = 'org.groovytutorial.shapes.app.Main'
+//CodeNarc analyses the source code for possible improvements
+codenarc {
+    toolVersion = "$codeNarcVersion"
 
-//CodeNarc analyses the source code for possible imporvements
-codenarc.toolVersion = "$project.codeNarcVersion"
-codenarcMain {
-    ignoreFailures false
-    configFile file('config/codenarc/ruleset.groovy')
-    maxPriority1Violations 0
-    maxPriority2Violations 10
-    maxPriority3Violations 20
+    codenarcMain {
+        configFile file('config/codenarc/ruleset.groovy')
+        exclude "**/package-info.*"
+        ignoreFailures false
+        maxPriority1Violations 0
+        maxPriority2Violations 10
+        maxPriority3Violations 20
+    }
+
+    codenarcTest {
+        ignoreFailures true
+        configFile file('config/codenarc/ruleset-test.groovy')
+        maxPriority1Violations 0
+        maxPriority2Violations 10
+        maxPriority3Violations 20
+    }
 }
 
-codenarcTest {
-    ignoreFailures true
-    configFile file('config/codenarc/ruleset-test.groovy')
-    maxPriority1Violations 0
-    maxPriority2Violations 10
-    maxPriority3Violations 20
+/*
+ * All items below here are used for preparing the distributable tutorial.
+ * You could delete everything that follows if you'd like and you'd get
+ * all of the Gradle defaults
+ */
+
+ext {
+    publishDirName = 'publish'
+    publishDirPath = "$buildDir/${ext.publishDirName}"
+    reportsDir = "$publishDirPath/reports"
 }
 
-//The Gradle wrapper makes it easy for others to try out your code
-task wrapper(type: Wrapper) {
-    gradleVersion = "$project.gradleVersion"
+project.with {
+    //See: https://docs.gradle.org/current/dsl/org.gradle.api.reporting.ReportingExtension.html
+    reporting {
+        baseDir "$publishDirPath/reports"
+    }
+
+    //Used by the groovydoc task
+    docsDirName = "$publishDirPath/api"
+
+    distsDirName = "${publishDirPath}/dist"
+    distributions {
+        main {
+            contents {
+                from { 'LICENSE' }
+            }
+        }
+    }
+
+    jar {
+        destinationDir = file("$distsDirName/jar")
+    }
+
+    shadowJar {
+        destinationDir = file("$distsDirName/jar")
+    }
+}
+
+asciidoctor {
+    separateOutputDirs = false
+    outputDir publishDirPath
+}
+
+task collateForPublication(type: Copy,
+        dependsOn: [ buildDashboard, build, shadowJar, check,
+                     groovydoc, asciidoctor, projectReport ]) {
+    description 'Collates all of the resources that will be used in the web-site for the tutorial'
+    group 'publishing'
+
+    copy {
+        from rootDir
+        into publishDirPath
+        include('LICENSE', 'build.gradle', 'settings.gradle', 'gradle.properties', 'gradlew*', 'gradle/**', 'src/**')
+    }
+
+    doLast {
+        println "Output available in $publishDirPath"
+    }
+}
+
+//See: https://github.com/ajoberstar/gradle-git/wiki/org.ajoberstar.github-pages
+apply plugin: 'org.ajoberstar.github-pages'
+githubPages {
+    repoUri = 'git@github.com:groovy-tutorial/shapes-demo.git'
+    pages {
+        from publishDirPath
+    }
+    publishGhPages {
+        dependsOn clean, collateForPublication
+    }
 }
