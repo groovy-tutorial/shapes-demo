@@ -79,60 +79,48 @@ codenarc {
  * You could delete everything that follows if you'd like and you'd get
  * all of the Gradle defaults
  */
-
-ext {
-    publishDirName = 'publish'
-    publishDirPath = "$buildDir/${ext.publishDirName}"
-    reportsDir = "$publishDirPath/reports"
-}
-
-project.with {
-    //See: https://docs.gradle.org/current/dsl/org.gradle.api.reporting.ReportingExtension.html
-    reporting {
-        baseDir "$publishDirPath/reports"
-    }
-
-    //Used by the groovydoc task
-    docsDirName = "$publishDirPath/api"
-
-    distsDirName = "${publishDirPath}/dist"
-    distributions {
-        main {
-            contents {
-                from { 'LICENSE' }
-            }
-        }
-    }
-
-    jar {
-        destinationDir = file("$distsDirName/jar")
-    }
-
-    shadowJar {
-        destinationDir = file("$distsDirName/jar")
-    }
-}
-
 asciidoctor {
+    logDocuments = true
     separateOutputDirs = false
-    outputDir publishDirPath
 }
 
-task collateForPublication(type: Copy,
-        dependsOn: [ buildDashboard, build, shadowJar, check,
-                     groovydoc, asciidoctor, projectReport ]) {
-    description 'Collates all of the resources that will be used in the web-site for the tutorial'
+
+task syncPublishFiles(type: Sync, dependsOn: [ buildDashboard, build, shadowJar, check,
+                                               groovydoc, asciidoctor, projectReport ]) {
+    description 'Collates all of the required files for publishing to GitHub pages branch'
     group 'publishing'
 
-    copy {
-        from rootDir
-        into publishDirPath
-        include('LICENSE', 'build.gradle', 'settings.gradle', 'gradle.properties', 'gradlew*', 'gradle/**', 'src/**')
-    }
+    mustRunAfter clean
+    into "$buildDir/publish-site"
 
-    doLast {
-        println "Output available in $publishDirPath"
+    from(reporting.baseDir) {
+        into 'reports'
     }
+    from asciidoctor.outputDir
+    from(docsDir) {
+        into 'api'
+    }
+    from(distsDir) {
+        into 'dist'
+    }
+    from(shadowJar.destinationDir) {
+        include shadowJar.archiveName
+        into 'dist'
+    }
+    from(projectDir) {
+        includes = [ 'build.gradle',
+                     'settings.gradle',
+                     'gradle.properties',
+                     'gradlew',
+                     'gradlew.bat',
+                     'gradle/**' ]
+        into 'dev'
+    }
+    from('src') {
+        into 'dev/src'
+        exclude 'docs'
+    }
+    from 'LICENSE'
 }
 
 //See: https://github.com/ajoberstar/gradle-git/wiki/org.ajoberstar.github-pages
@@ -140,9 +128,9 @@ apply plugin: 'org.ajoberstar.github-pages'
 githubPages {
     repoUri = 'git@github.com:groovy-tutorial/shapes-demo.git'
     pages {
-        from publishDirPath
+        from "$buildDir/publish-site"
     }
     publishGhPages {
-        dependsOn collateForPublication
+        dependsOn syncPublishFiles
     }
 }
