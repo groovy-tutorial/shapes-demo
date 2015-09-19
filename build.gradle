@@ -11,10 +11,6 @@ plugins {
     //The idea and eclipse plugins provide helpers for 2 popular IDEs
     id 'eclipse'
     id 'idea'
-
-    //These plugins are used to generate this tutorial
-    id "org.asciidoctor.gradle.asciidoctor" version "1.5.1"
-    id "org.ajoberstar.github-pages" version "1.3.0"
 }
 
 repositories {
@@ -43,7 +39,6 @@ project.with {
     wrapper.gradleVersion = "$gradleVersion"
 }
 
-
 dependencies {
     //This brings in the Groovy system:
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: "$groovyVersion"
@@ -71,66 +66,5 @@ codenarc {
         maxPriority1Violations 0
         maxPriority2Violations 10
         maxPriority3Violations 20
-    }
-}
-
-/*
- * All items below here are used for preparing the distributable tutorial.
- * You could delete everything that follows if you'd like and you'd get
- * all of the Gradle defaults
- */
-asciidoctor {
-    logDocuments = true
-    separateOutputDirs = false
-}
-
-
-task syncPublishFiles(type: Sync, dependsOn: [ buildDashboard, build, shadowJar, check,
-                                               groovydoc, asciidoctor, projectReport ]) {
-    description 'Collates all of the required files for publishing to GitHub pages branch'
-    group 'publishing'
-
-    mustRunAfter clean
-    into "$buildDir/publish-site"
-
-    from(reporting.baseDir) {
-        into 'reports'
-    }
-    from asciidoctor.outputDir
-    from(docsDir) {
-        into 'api'
-    }
-    from(distsDir) {
-        into 'dist'
-    }
-    from(shadowJar.destinationDir) {
-        include shadowJar.archiveName
-        into 'dist'
-    }
-    from(projectDir) {
-        includes = [ 'build.gradle',
-                     'settings.gradle',
-                     'gradle.properties',
-                     'gradlew',
-                     'gradlew.bat',
-                     'gradle/**' ]
-        into 'dev'
-    }
-    from('src') {
-        into 'dev/src'
-        exclude 'docs'
-    }
-    from 'LICENSE'
-}
-
-//See: https://github.com/ajoberstar/gradle-git/wiki/org.ajoberstar.github-pages
-apply plugin: 'org.ajoberstar.github-pages'
-githubPages {
-    repoUri = 'git@github.com:groovy-tutorial/shapes-demo.git'
-    pages {
-        from "$buildDir/publish-site"
-    }
-    publishGhPages {
-        dependsOn syncPublishFiles
     }
 }
