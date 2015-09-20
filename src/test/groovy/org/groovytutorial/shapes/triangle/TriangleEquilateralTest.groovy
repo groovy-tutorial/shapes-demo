@@ -2,6 +2,7 @@ package org.groovytutorial.shapes.triangle
 
 import static java.math.MathContext.DECIMAL32 as MC
 
+import org.groovytutorial.shapes.Triangle
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -9,6 +10,21 @@ import spock.lang.Unroll
 @Unroll
 @Subject(TriangleEquilateral)
 class TriangleEquilateralTest extends Specification {
+
+    def "Ensure that the shapeName property == 'Triangle'"() {
+        given: "A new Triangle"
+        TriangleEquilateral t = new TriangleEquilateral(1)
+        expect:
+        'Triangle' == t.shapeName
+    }
+
+    def "Ensure that the triangleType property == 'Equilateral'"() {
+        given: "A new Triangle"
+        TriangleEquilateral t = new TriangleEquilateral(1)
+        expect:
+        'Equilateral' == t.triangleType
+    }
+
     def "Test that an Equilateral Triangle of side (#a) has a perimeter of #perimeter and an area of #area"() {
         given: "A new Equilateral Triangle"
         TriangleEquilateral t = new TriangleEquilateral(a)
@@ -22,7 +38,5 @@ class TriangleEquilateralTest extends Specification {
         a || perimeter | area
         3 || 9.0g | 3.89711431702998g
         7.2 || 21.6g | 22.44738g
-
     }
-
 }

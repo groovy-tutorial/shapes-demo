@@ -16,6 +16,7 @@ import groovy.util.logging.Log
 @ToString(includeNames = true, includeFields = true, includePackage = true)
 class Triangle implements TwoDimensionalShape, Sides {
     static final String SHAPE_NAME = 'Triangle'
+
     final BigDecimal area
 
     /**
@@ -52,7 +53,7 @@ class Triangle implements TwoDimensionalShape, Sides {
      * @return the area
      */
     protected BigDecimal calculateArea() {
-        return calculateArea(a, b, c)
+        calculateArea(a, b, c)
     }
 
     /**
@@ -63,7 +64,7 @@ class Triangle implements TwoDimensionalShape, Sides {
      */
     static final BigDecimal calculateArea(Number a, Number b, Number c) throws IllegalArgumentException {
         log.info "Triangle.calculateArea was called with a=$a, b=$b, c=$c"
-        ShapeUtil.checkSideException(a, b, c)
+        ShapeUtil.checkSidesException(a, b, c)
         Number s = (a + b + c) / 2
         Math.sqrt(s * (s - a) * (s - b) * (s - c))
     }
@@ -72,5 +73,10 @@ class Triangle implements TwoDimensionalShape, Sides {
     String getDisplayInfo() {
         "$SHAPE_NAME: Side A = $a; Side B = $b; \
 Side C = $c; perimeter = $perimeter; area = $area"
+    }
+
+    @Override
+    String getShapeName() {
+        SHAPE_NAME
     }
 }

@@ -14,7 +14,7 @@ import org.groovytutorial.shapes.Triangle
 @Log
 @EqualsAndHashCode(callSuper = true)
 @ToString(includeNames = true, includeFields = true, includePackage = true, includeSuper = true)
-final class TriangleRightAngled extends Triangle {
+final class TriangleRightAngled extends Triangle implements TriangleSubtype {
     static final String TRIANGLE_TYPE = 'Right-angled'
 
     /**
@@ -34,7 +34,7 @@ final class TriangleRightAngled extends Triangle {
      */
     @Override
     protected BigDecimal calculateArea() {
-        return calculateArea(a, b)
+        calculateArea(a, b)
     }
 
     /**
@@ -45,7 +45,7 @@ final class TriangleRightAngled extends Triangle {
      * @throws IllegalArgumentException if a or b <= 0
      */
     static Number calculateHypotenuse(Number a, Number b) throws IllegalArgumentException {
-        ShapeUtil.checkSideException(a, b)
+        ShapeUtil.checkSidesException(a, b)
         Math.sqrt(a**2 + b**2)
     }
 
@@ -58,7 +58,7 @@ final class TriangleRightAngled extends Triangle {
      */
     static Number calculateArea(Number a, Number b) throws IllegalArgumentException {
         log.info "TriangleRightAngled.calculateArea was called with a=$a, b=$b"
-        ShapeUtil.checkSideException(a, b)
+        ShapeUtil.checkSidesException(a, b)
         0.5 * a * b
     }
 

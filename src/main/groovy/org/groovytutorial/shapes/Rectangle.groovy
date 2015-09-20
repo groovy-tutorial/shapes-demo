@@ -12,7 +12,7 @@ import groovy.transform.ToString
 @ToString(includeNames = true, includeFields = true, includePackage = true)
 class Rectangle implements TwoDimensionalShape, Sides {
 
-    static final String SHAPE_NAME = 'Rectangle'
+    private static final String SHAPE_NAME = 'Rectangle'
 
     /** The area of the rectangle */
     final BigDecimal area
@@ -41,4 +41,8 @@ class Rectangle implements TwoDimensionalShape, Sides {
         "$SHAPE_NAME: length = $a; width = $b; perimeter = $perimeter; area = $area"
     }
 
+    @Override
+    String getShapeName() {
+        SHAPE_NAME
+    }
 }

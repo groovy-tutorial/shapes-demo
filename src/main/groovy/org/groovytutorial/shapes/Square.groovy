@@ -12,7 +12,7 @@ import groovy.transform.ToString
 @ToString(includeNames = true, includeFields = true, includePackage = true, includeSuper = true)
 final class Square extends Rectangle {
 
-    static final String SHAPE_NAME = 'Square'
+    private static final String SHAPE_NAME = 'Square'
 
     /**
      * @param length

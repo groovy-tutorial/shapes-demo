@@ -26,7 +26,7 @@ class ShapeUtil {
      * @param sides a series of parameters, each reflecting a side's length
      * @throws IllegalArgumentException if one of the sides <= 0
      */
-    static void checkSideException(Number... sides) throws IllegalArgumentException {
+    static void checkSidesException(Number... sides) throws IllegalArgumentException {
         if (!checkSides(sides)) {
             throw new IllegalArgumentException('The side must be a positive number.')
         }

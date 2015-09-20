@@ -35,7 +35,7 @@ final class TriangleEquilateral extends TriangleIsosceles {
      */
     @Override
     protected BigDecimal calculateArea() {
-        return calculateArea(a)
+        calculateArea(a)
     }
 
     /**
@@ -47,7 +47,7 @@ final class TriangleEquilateral extends TriangleIsosceles {
      */
     static BigDecimal calculateArea(Number a) throws IllegalArgumentException {
         log.info "TriangleEquilateral.calculateArea was called with a=$a"
-        ShapeUtil.checkSideException(a)
+        ShapeUtil.checkSidesException(a)
         (Math.sqrt(3) / 4) * a**2
     }
 

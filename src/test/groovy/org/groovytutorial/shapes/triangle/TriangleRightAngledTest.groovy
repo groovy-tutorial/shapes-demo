@@ -8,6 +8,21 @@ import spock.lang.Unroll
 @Unroll
 @Subject(TriangleRightAngled)
 class TriangleRightAngledTest extends Specification {
+
+    def "Ensure that the shapeName property == 'Triangle'"() {
+        given: "A new Triangle"
+        TriangleRightAngled t = new TriangleRightAngled(3, 4)
+        expect:
+        'Triangle' == t.shapeName
+    }
+
+    def "Ensure that the triangleType property == 'Right-angled'"() {
+        given: "A new Triangle"
+        TriangleRightAngled t = new TriangleRightAngled(3, 4)
+        expect:
+        'Right-angled' == t.triangleType
+    }
+
     def "Test that a Right Angled Triangle of sides (#a, #b) has an hypotenuse of #hypotenuse, a perimeter of #perimeter and an area of #area"() {
         given: "A new Right Angled Triangle"
         TriangleRightAngled t = new TriangleRightAngled(a, b)

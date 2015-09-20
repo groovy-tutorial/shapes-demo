@@ -12,7 +12,7 @@ import groovy.transform.ToString
 @EqualsAndHashCode(includes = 'radius')
 @ToString(includeNames = true, includeFields = true, includePackage = true)
 final class Circle implements TwoDimensionalShape {
-    static final String SHAPE_NAME = 'Circle'
+    private     static final String SHAPE_NAME = 'Circle'
 
     /** The radius of the circle */
     final BigDecimal radius
@@ -29,7 +29,7 @@ final class Circle implements TwoDimensionalShape {
      * @throws IllegalArgumentException if radius <= 0
      */
     Circle(BigDecimal radius) throws IllegalArgumentException {
-        ShapeUtil.checkSideException(radius)
+        ShapeUtil.checkSidesException(radius)
         this.radius = radius
         this.perimeter = calculatePerimeter(radius)
         this.area = calculateArea(radius)
@@ -53,7 +53,7 @@ final class Circle implements TwoDimensionalShape {
      * @throws IllegalArgumentException if radius <= 0
      */
     static BigDecimal calculatePerimeter(Number radius) throws IllegalArgumentException {
-        ShapeUtil.checkSideException(radius)
+        ShapeUtil.checkSidesException(radius)
         (2 * PI * radius) as BigDecimal
     }
 
@@ -64,7 +64,7 @@ final class Circle implements TwoDimensionalShape {
      * @throws IllegalArgumentException if radius <= 0
      */
     static BigDecimal calculateArea(Number radius) throws IllegalArgumentException {
-        ShapeUtil.checkSideException(radius)
+        ShapeUtil.checkSidesException(radius)
         (PI * radius**2) as BigDecimal
     }
 
@@ -75,7 +75,7 @@ final class Circle implements TwoDimensionalShape {
      * @throws IllegalArgumentException if radius <= 0
      */
     static BigDecimal calculateDiameter(Number radius) throws IllegalArgumentException {
-        ShapeUtil.checkSideException(radius)
+        ShapeUtil.checkSidesException(radius)
         (radius * 2) as BigDecimal
     }
 
@@ -99,5 +99,10 @@ circumference = ${circumference}; area = ${area}"
      */
     Number getDiameter() {
         calculateDiameter(this.radius)
+    }
+
+    @Override
+    String getShapeName() {
+        SHAPE_NAME
     }
 }

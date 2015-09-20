@@ -7,6 +7,12 @@ import spock.lang.Unroll
 @Unroll
 @Subject(Rectangle)
 class RectangleTest extends Specification {
+
+    def "Ensure that SHAPE_NAME is 'Rectangle'"() {
+        expect:
+        'Rectangle' == Rectangle.SHAPE_NAME
+    }
+
     def "Test that a rectangle of length #length and width #width has a perimeter of #perimeter and an area of #area"() {
         given: "A new rectangle"
         Rectangle r = new Rectangle(length, width)
@@ -27,27 +33,20 @@ class RectangleTest extends Specification {
         6       | 100   || 212       | 600
     }
 
-    def "Ensure that a rectangle can only be defined with a positive numeric length and width"() {
-        setup:
-        Exception exception //just to hold the expected exception
-
+    def "Ensure that a rectangle can only be defined with a positive numeric length (#length) and width (#width)"() {
         when: "A rectangle is set up with a bad length and/or width"
-        try {
-            Rectangle r = new Rectangle(length, width)
-        } catch (e) {
-            exception = e
-        }
+        Rectangle r = new Rectangle(length, width)
 
         then: "Expect one of two exceptions"
-        exception?.class in [IllegalArgumentException, GroovyRuntimeException]
+        thrown(IllegalArgumentException)
 
         where: "the dimensions and resulting measurements are"
         length   | width
         -2       | 2
         10       | -7
         -6       | -100
-        'rabbit' | 1
-        1        | false
-        UUID.randomUUID() | 'apple'
+        0        | 0
+        0        | 2
+        2        | 0
     }
 }

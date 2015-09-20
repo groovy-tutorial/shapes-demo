@@ -16,8 +16,8 @@ import org.groovytutorial.shapes.Triangle
 @Log
 @EqualsAndHashCode(callSuper = true)
 @ToString(includeNames = true, includeFields = true, includePackage = true, includeSuper = true)
-class TriangleIsosceles extends Triangle {
-    static final String TRIANGLE_TYPE = 'Isosceles'
+class TriangleIsosceles extends Triangle implements TriangleSubtype  {
+    protected static String TRIANGLE_TYPE =  'Isosceles'
 
     /**
      * Create a triangle that has one base side and two equal sides (legs)
@@ -36,7 +36,7 @@ class TriangleIsosceles extends Triangle {
      */
     @Override
     protected BigDecimal calculateArea() {
-        return calculateArea(a, b)
+        calculateArea(a, b)
     }
 
     /**
@@ -49,7 +49,7 @@ class TriangleIsosceles extends Triangle {
      */
     static final BigDecimal calculateArea(Number base, Number leg) throws IllegalArgumentException {
         log.info "TriangleIsosceles.calculateArea was called with base=$base, b=$leg"
-        ShapeUtil.checkSideException(base, leg)
+        ShapeUtil.checkSidesException(base, leg)
         def height = Math.sqrt(leg**2 - (base**2 / 4))
         base * (height / 2)
     }

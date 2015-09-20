@@ -29,4 +29,9 @@ interface TwoDimensionalShape {
      * @return a text representation of the shape
      */
     String getDisplayInfo()
+
+    /**
+     * @return the name of the shape
+     */
+    String getShapeName()
 }

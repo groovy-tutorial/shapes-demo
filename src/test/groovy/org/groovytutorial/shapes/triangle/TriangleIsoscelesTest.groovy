@@ -8,6 +8,21 @@ import spock.lang.Unroll
 @Unroll
 @Subject(TriangleIsosceles)
 class TriangleIsoscelesTest extends Specification {
+
+    def "Ensure that the shapeName property == 'Triangle'"() {
+        given: "A new Triangle"
+        TriangleIsosceles t = new TriangleIsosceles(1, 2)
+        expect:
+        'Triangle' == t.shapeName
+    }
+
+    def "Ensure that the triangleType property == 'Isosceles'"() {
+        given: "A new Triangle"
+        TriangleIsosceles t = new TriangleIsosceles(1, 2)
+        expect:
+        'Isosceles' == t.triangleType
+    }
+
     def "Test that an Isosceles Triangle of sides (#a, #b) has a perimeter of #perimeter and an area of #area"() {
         given: "A new Isosceles Triangle"
         TriangleIsosceles t = new TriangleIsosceles(a, b)

@@ -9,6 +9,19 @@ import spock.lang.Unroll
 @Unroll
 @Subject(Triangle)
 class TriangleTest extends Specification {
+
+    def "Ensure that SHAPE_NAME is 'Triangle'"() {
+        expect:
+        'Triangle' == Triangle.SHAPE_NAME
+    }
+
+    def "Ensure that the shapeName property == 'Triangle'"() {
+        given: "A new Triangle"
+        Triangle t = new Triangle(1, 1, 1)
+        expect:
+        'Triangle' == t.shapeName
+    }
+
     def "Test that a Triangle of sides (#a, #b, #c) has a perimeter of #perimeter and an area of #area"() {
         given: "A new Triangle"
         Triangle t = new Triangle(a, b, c)

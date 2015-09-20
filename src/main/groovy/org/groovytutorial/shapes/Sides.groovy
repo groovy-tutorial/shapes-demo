@@ -71,7 +71,7 @@ trait Sides {
                 throw new ReadOnlyPropertyException(name, Sides)
             }
             if (value instanceof Number) {
-                ShapeUtil.checkSideException(value)
+                ShapeUtil.checkSidesException(value)
                 sideMap.put(name, value as Number)
                 return sideMap.get(name)
             }
