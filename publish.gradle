@@ -194,6 +194,9 @@ task syncPublishFiles(type: Sync, dependsOn: [ prepareForPublishing, asciidoctor
                      'config/**' ]
         into 'dev'
     }
+    from('lib') {
+        into 'dev/lib'
+    }
     from('src') {
         into 'dev/src'
         exclude 'docs'
