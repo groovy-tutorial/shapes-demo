@@ -15,6 +15,7 @@ plugins {
     id 'application'
     id 'build-dashboard'
     id 'project-report'
+    id 'jacoco'
     id 'codenarc'
     id 'com.github.johnrengelman.shadow' version '1.2.2'
     //These plugins are used to generate this tutorial
@@ -38,10 +39,10 @@ asciidoctor {
     separateOutputDirs = false
 }
 
-def sourceBrowserOutputDir = file("$buildDir/source-browser/")
+def sourceBrowserOutputDir = file("${reporting.baseDir}/source-browser/")
 
 task copySourceBrowserResources(type: Sync) {
-    from 'src/code-browse/'
+    from 'config/code-browse/'
     into file("$sourceBrowserOutputDir/resources")
 }
 
@@ -155,7 +156,9 @@ $index
 
 task prepareForPublishing(type: GradleBuild) {
     buildFile = 'build.gradle'
-    tasks = [ 'buildDashboard', 'build', 'shadowJar', 'check',
+    tasks = [ 'buildDashboard', 'build',
+              'test', 'jacoco',
+              'shadowJar', 'check',
               'groovydoc', 'projectReport' ]
     mustRunAfter clean
 }
