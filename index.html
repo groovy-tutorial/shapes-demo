@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.0">
-<meta name="description" content="">
+<meta name="description" content="A small demonstration of a Groovy application using the Gradle build tool.">
 <meta name="keywords" content="gradle, groovy, oo">
 <meta name="author" content="Duncan Dickinson">
 <title>A tour through a small Gradle-Groovy project</title>
@@ -521,8 +521,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_using_this_tutorial">Using this tutorial</a></li>
 </ul>
 </li>
-<li><a href="#_resources">Resources</a></li>
-<li><a href="#_running_the_code">Running the code</a>
+<li><a href="#_running_and_building_the_code">Running and building the code</a>
 <ul class="sectlevel2">
 <li><a href="#_using_gradle">Using Gradle</a></li>
 <li><a href="#_using_the_command_line">Using the command line</a></li>
@@ -535,7 +534,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p></p>
+<p>A small demonstration of a Groovy application using the Gradle build tool.</p>
 </div>
 </div>
 </div>
@@ -543,27 +542,82 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is an introductory project that demonstrates aspects of OO-programming in Groovy. The code here is described in the
-<a href="https://leanpub.com/groovytutorial">The Groovy 2 Tutorial</a> book.</p>
+<p>This is an introductory project that demonstrates aspects of a small Groovy program. The code here is described in the
+<a href="https://leanpub.com/groovytutorial">The Groovy 2 Tutorial</a> book, specifically in the <a href="https://leanpub.com/groovytutorial/read#leanpub-auto-more-object-oriented-programming">More object-oriented programming</a> section.</p>
 </div>
 <div class="paragraph">
-<p>This codebase contains:</p>
+<p>The set of files associated with this tutorial contains:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>The compiled distribution for installing on your system:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dist/shapes-demo-1.0-SNAPSHOT.zip">Zip version</a></p>
+</li>
+<li>
+<p><a href="dist/shapes-demo-1.0-SNAPSHOT.tar">Tar version</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The project code in the <code>dev</code> directory, featuring:</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Various <a href="http://gradle.org/">Gradle-related</a> files (e.g. <code>build.gradle</code>)</p>
 </li>
 <li>
-<p>Groovy source code in <code>src/main/groovy</code></p>
+<p>The Groovy source code in <code>src/main/groovy</code></p>
 </li>
 <li>
-<p><a href="http://spockframework.github.io/spock/docs/1.0/index.html">Spock tests</a> in <code>src/test/groovy</code></p>
+<p>The <a href="http://spockframework.github.io/spock/docs/1.0/index.html">Spock tests</a> in <code>src/test/groovy</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>You don&#8217;t need Groovy or Gradle to run this codebase - you just need to have a Java JDK installed (at least v1.7).</p>
+</li>
+<li>
+<p><a href="reports/source-browser/index.html">A browsable view of the source code</a></p>
+</li>
+<li>
+<p><a href="api/groovydoc/index.html">A copy of the generated GroovyDocs</a></p>
+</li>
+<li>
+<p><a href="reports/buildDashboard/index.html">A variety of information reports</a>, including</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="reports/codenarc/main.html">CodeNarc&#8217;s analysis report</a></p>
+</li>
+<li>
+<p><a href="reports/jacoco/test/html/index.html">Jacoco&#8217;s test coverage report</a></p>
+</li>
+<li>
+<p><a href="reports/tests/index.html">The results from the Spock tests</a></p>
+</li>
+<li>
+<p>Various Gradle project details:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="reports/project/dependencies/index.html">A list of the Gradle project&#8217;s dependencies</a></p>
+</li>
+<li>
+<p><a href="reports/project/properties.txt">The Gradle project properties (text file)</a></p>
+</li>
+<li>
+<p><a href="reports/project/tasks.txt">The available Gradle tasks (text file)</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="sect2">
 <h3 id="_using_this_tutorial">Using this tutorial</h3>
@@ -583,46 +637,51 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>The code in this tutorial was prepared using Groovy version 2.4.4 and is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p>
 </div>
+<div class="paragraph">
+<p>You don&#8217;t need Groovy or Gradle to run the codebase - you just need to have a Java JDK installed (at least v1.7).</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_resources">Resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="reports/buildDashboard/index.html">Links to the test and codenarc reports</a></p>
-</li>
-<li>
-<p><a href="api/groovydoc/index.html">The GroovyDoc</a></p>
-</li>
-<li>
-<p>Project reports:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="reports/project/properties.txt">The Gradle project properties (text file)</a></p>
-</li>
-<li>
-<p><a href="reports/project/tasks.txt">The available Gradle tasks (text file)</a></p>
-</li>
-<li>
-<p>The dependencies report (<a href="reports/project/dependencies/index.html">html</a>)(<a href="reports/project/dependencies">text file</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="dist/">Distribution files</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_running_the_code">Running the code</h2>
+<h2 id="_running_and_building_the_code">Running and building the code</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The <code>dev</code> directory contains all of the codebase and the Gradle build environment. The information in this section
+assumes that you are working in a terminal/command-line environment and that your working directory is the <code>dev</code>
+sub-directory.</p>
+</div>
+<div class="paragraph">
+<p>The codebase is small and provides some basic objects that describe 2D shapes. When run, the application displays
+some information about a few pre-configured shapes:</p>
+</div>
+<div class="listingblock">
+<div class="title">The application output</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">================================================================================
+
+Welcome to the Shapes demo
+
+================================================================================
+
+Rectangle: length = 10; width = 2; perimeter = 24; area = 20
+
+Square: length = 4; perimeter = 16; area = 16
+
+Circle: radius = 8; diameter = 16; circumference = 50.26548245743669; area = 201.06192982974676
+
+Triangle: Side A = 5; Side B = 8; Side C = 10; perimeter = 23; area = 19.8100353356575311636333935894072055816650390625
+
+Right-angled Triangle: Side A = 3; Side B = 4; Side C = 5.0; perimeter = 12.0; area = 6.0
+
+Isosceles Triangle: Side A = 2; Side B = 8; Side C = 8; perimeter = 18; area = 7.93725393319377214851328972144983708858489990234375
+
+Equilateral Isosceles Triangle: Side A = 6; Side B = 6; Side C = 6; perimeter = 18; area = 15.5884572681198942945002272608689963817596435546875</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code behind this display is found in the <a href="dev/src/main/groovy/org/groovytutorial/shapes/app/Main.groovy">Main.groovy</a> script.</p>
+</div>
 <div class="sect2">
 <h3 id="_using_gradle">Using Gradle</h3>
 <div class="paragraph">
@@ -631,31 +690,22 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>You don&#8217;t need to download anything for this to work as the <a href="https://docs.gradle.org/current/userguide/wrapper_plugin.html">Gradle wrapper</a> will download everything you need.</p>
 </div>
-<div class="sect3">
-<h4 id="_check_out_the_build_file">Check out the build file</h4>
-<div class="paragraph">
-<p>If you&#8217;re new to Gradle,  check out the build file via the gui: type the following commands in the same folder as
-<code>build.gradle</code> is located:</p>
-</div>
-<div class="paragraph">
-<p>For OS X, Linux and other *nix systems:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>./gradlew --gui</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For Windows:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>gradlew.bat --gui</pre>
-</div>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This guide doesn&#8217;t provide an introductory tutorial to Gradle.
+Check out <a href="https://docs.gradle.org/current/userguide/tutorials.html">Chapter 3. Tutorials</a> in the Gradle User Guide if you
+need to know more than is covered here.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_run_the_build_file">Run the build file</h4>
+<h4 id="_run_the_code">Run the code</h4>
 <div class="paragraph">
 <p>To run the application via Gradle:</p>
 </div>
@@ -675,57 +725,9 @@ table.CodeRay td.code>pre{padding:0}
 <pre>gradlew.bat</pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_gradle_tasks">Gradle tasks</h4>
 <div class="paragraph">
-<p>The Gradle build also provides a number of interesting options. In Gradle these are called <em>tasks</em> and you can
-see all of the available tasks by running <code>./gradlew tasks</code>. Here are a few tasks worth trying out:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>./gradlew clean</code>: removes all of the generated files (it doesn&#8217;t delete the source code)</p>
-</li>
-<li>
-<p><code>./gradlew check</code>: runs a <a href="http://codenarc.sourceforge.net/">CodeNarc</a> check and the <a href="http://spockframework.github.io/spock/docs/1.0/index.html">Spock tests</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>You can find the output of these checks/tests in the <code>build/publish/reports/</code> directory - check them out in your browser.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>./gradlew groovydoc</code>: will generate the GroovyDoc for the project</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The documentation is put into <code>build/publish/api/</code> and is best read in your browser</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>./gradlew assemble</code>: creates a number of outputs that make distributing your code possible:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>build/publish/dist</code>: contains <code>tar</code> and <code>zip</code> archives that can be distributed to others, including handy scripts to start your application</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_the_Über_jar">The Über jar</h4>
-<div class="paragraph">
-<p>I&#8217;ve also added in the <a href="https://github.com/johnrengelman/shadow/">Gradle Shadow</a> plugin as it will create an über jar - one that hold the compiled codebase and all required libraries.
-To create this file, run <code>./gradlew shadowJar</code> and <code>build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code> will be created.
-Take the über jar out for a spin by running: <code>java -jar build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code>.</p>
+<p>This will compile and run the Groovy code as I&#8217;ve configured the <code>run</code> task to be the default so it will
+ run if you don&#8217;t pass Gradle a specific task in the command line.</p>
 </div>
 </div>
 <div class="sect3">
@@ -762,6 +764,280 @@ Take the über jar out for a spin by running: <code>java -jar build/libs/shapes-
 <p>You&#8217;ll also notice a <code>.gradle/</code> directory is created. This is used by Gradle to cache information and libraries etc.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_review_the_build_file">Review the build file</h4>
+<div class="paragraph">
+<p>Gradle uses a number of conventions that, if you follow them, make life a little easier. The first such convention
+is that the file describe how to build a project is named <code>build.gradle</code> and placed in the root directory of the project.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at the build file:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>build.gradle</code> file</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {                   <i class="conum" data-value="1"></i><b>(1)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>             <i class="conum" data-value="2"></i><b>(2)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">application</span><span class="delimiter">'</span></span>        <i class="conum" data-value="3"></i><b>(3)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">build-dashboard</span><span class="delimiter">'</span></span>    <i class="conum" data-value="4"></i><b>(4)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">project-report</span><span class="delimiter">'</span></span>     <i class="conum" data-value="5"></i><b>(5)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">codenarc</span><span class="delimiter">'</span></span>           <i class="conum" data-value="6"></i><b>(6)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">jacoco</span><span class="delimiter">'</span></span>             <i class="conum" data-value="7"></i><b>(7)</b>
+
+    <span class="comment">//This is a handy plugin as it rolls everything into a single Jar file: https://github.com/johnrengelman/shadow/</span>
+    id <span class="string"><span class="delimiter">'</span><span class="content">com.github.johnrengelman.shadow</span><span class="delimiter">'</span></span> version <span class="string"><span class="delimiter">'</span><span class="content">1.2.2</span><span class="delimiter">'</span></span>    <i class="conum" data-value="8"></i><b>(8)</b>
+
+    <span class="comment">//The idea and eclipse plugins provide helpers for 2 popular IDEs</span>
+    id <span class="string"><span class="delimiter">'</span><span class="content">eclipse</span><span class="delimiter">'</span></span>            <i class="conum" data-value="9"></i><b>(9)</b>
+    id <span class="string"><span class="delimiter">'</span><span class="content">idea</span><span class="delimiter">'</span></span>               <i class="conum" data-value="10"></i><b>(10)</b>
+}
+
+repositories {              <i class="conum" data-value="11"></i><b>(11)</b>
+    <span class="comment">//The JCenter repository holds libraries that we can use in our code: https://bintray.com/bintray/jcenter</span>
+    jcenter()
+}
+
+project.ext {                           <i class="conum" data-value="12"></i><b>(12)</b>
+    groovyVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.4.4</span><span class="delimiter">'</span></span>             <i class="conum" data-value="13"></i><b>(13)</b>
+    spockVersion = <span class="string"><span class="delimiter">'</span><span class="content">1.0-groovy-2.4</span><span class="delimiter">'</span></span>     <i class="conum" data-value="14"></i><b>(14)</b>
+    gradleVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.7</span><span class="delimiter">'</span></span>               <i class="conum" data-value="15"></i><b>(15)</b>
+    codeNarcVersion = <span class="string"><span class="delimiter">'</span><span class="content">0.24</span><span class="delimiter">'</span></span>            <i class="conum" data-value="16"></i><b>(16)</b>
+}
+
+<span class="comment">//project.name is set in the settings.gradle file using: rootProject.name = 'shapes-demo'</span>
+project.with {  <i class="conum" data-value="17"></i><b>(17)</b>
+    group <span class="string"><span class="delimiter">'</span><span class="content">org.groovytutorial.shapes</span><span class="delimiter">'</span></span>
+    version <span class="string"><span class="delimiter">'</span><span class="content">1.0-SNAPSHOT</span><span class="delimiter">'</span></span>
+    description = <span class="string"><span class="delimiter">'</span><span class="content">A tutorial covering basic Gradle usage and OO-development in Groovy</span><span class="delimiter">'</span></span>
+
+    defaultTasks <span class="string"><span class="delimiter">'</span><span class="content">run</span><span class="delimiter">'</span></span>  <i class="conum" data-value="18"></i><b>(18)</b>
+
+    <span class="comment">//This is the class that is called when using the &quot;run&quot; task</span>
+    mainClassName = <span class="string"><span class="delimiter">'</span><span class="content">org.groovytutorial.shapes.app.Main</span><span class="delimiter">'</span></span>    <i class="conum" data-value="19"></i><b>(19)</b>
+
+    wrapper.gradleVersion = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>gradleVersion</span><span class="delimiter">&quot;</span></span>                <i class="conum" data-value="20"></i><b>(20)</b>
+}
+
+dependencies {  <i class="conum" data-value="21"></i><b>(21)</b>
+    <span class="comment">//This brings in the Groovy system:</span>
+    compile <span class="key">group</span>: <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">groovy-all</span><span class="delimiter">'</span></span>, <span class="key">version</span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>groovyVersion</span><span class="delimiter">&quot;</span></span>
+
+    <span class="comment">//This brings in the Spock Testing Framework for the test stage</span>
+    testCompile <span class="key">group</span>: <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spock-core</span><span class="delimiter">'</span></span>, <span class="key">version</span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>spockVersion</span><span class="delimiter">&quot;</span></span>
+}
+
+<span class="comment">//CodeNarc analyses the source code for possible improvements</span>
+codenarc {  <i class="conum" data-value="22"></i><b>(22)</b>
+    toolVersion = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>codeNarcVersion</span><span class="delimiter">&quot;</span></span>
+
+    codenarcMain {
+        configFile file(<span class="string"><span class="delimiter">'</span><span class="content">config/codenarc/ruleset.groovy</span><span class="delimiter">'</span></span>)
+        exclude <span class="string"><span class="delimiter">&quot;</span><span class="content">**/package-info.*</span><span class="delimiter">&quot;</span></span>
+        ignoreFailures <span class="predefined-constant">false</span>
+        maxPriority1Violations <span class="integer">0</span>
+        maxPriority2Violations <span class="integer">10</span>
+        maxPriority3Violations <span class="integer">20</span>
+    }
+
+    codenarcTest {
+        ignoreFailures <span class="predefined-constant">true</span>
+        configFile file(<span class="string"><span class="delimiter">'</span><span class="content">config/codenarc/ruleset-test.groovy</span><span class="delimiter">'</span></span>)
+        maxPriority1Violations <span class="integer">0</span>
+        maxPriority2Violations <span class="integer">10</span>
+        maxPriority3Violations <span class="integer">20</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/plugins.html">Gradle Plugins</a> do the actual work of compiling, testing, reporting etc</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/tutorial_groovy_projects.html">The groovy plugin</a> lets us compile Groovy code and prepare GroovyDocs</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/application_plugin.html">The application plugin</a> builds the tar and zip distributions and provides the <code>run</code> tasks to try out the application</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/buildDashboard_plugin.html">The build-dashboard plugin</a> creates a basic index to the various reports produced by other plugins</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/project_reports_plugin.html">The project-report plugin</a> generates dependency, task and property reports for the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/codenarc_plugin.html">The codenarc plugin</a> analyses the source code and produces a quality report using the <a href="http://codenarc.sourceforge.net/">CodeNarc software</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/jacoco_plugin.html">The jacoco plugin</a> reports on how well the source code is covered by tests using the <a href="http://eclemma.org/jacoco/">JaCoCo software</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://github.com/johnrengelman/shadow/">The shadow plugin</a> creates a single Jar file containing the source code and other required libraries, giving you a single Jar for deployment</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/eclipse_plugin.html">The eclipse plugin</a> provides functionality useful to those that want to work on the project using the <a href="http://eclipse.org/">Eclipse IDE</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><a href="https://docs.gradle.org/current/userguide/idea_plugin.html">The idea plugin</a> is for those using <a href="http://www.jetbrains.com/idea/">IntelliJ</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Repositories contain a collection of third-party libraries for use in the build (e.g. for compilation or running tests). I have chosen to use the <a href="https://bintray.com/bintray/jcenter">JCenter</a> repository but there are <a href="https://docs.gradle.org/current/userguide/dependency_management.html#sec:repositories">others to choose from</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>The <a href="https://docs.gradle.org/current/userguide/writing_build_scripts.html#sec:extra_properties"><code>ext</code> properties</a> hold <em>extra</em> user-defined properties for use in the build. You&#8217;ll see I&#8217;ve set the various versions I want to use.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td>This is the Groovy version I&#8217;ll use when declaring the project dependencies</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="14"></i><b>14</b></td>
+<td>This is the version of the <a href="http://docs.spockframework.org/">Spock Framework</a> I&#8217;ll use to test my source code</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="15"></i><b>15</b></td>
+<td>I can use a specific Gradle version with the Gradle Wrapper to help make sure the build will work across different systems</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="16"></i><b>16</b></td>
+<td>This is the version of CodeNarc I need</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="17"></i><b>17</b></td>
+<td>The Gradle project has a number of properties, many I can read, some I can change. I don&#8217;t actually need the enclosing <code>project.with {}</code>, I just feel it helps delineate what I&#8217;m setting.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="18"></i><b>18</b></td>
+<td>One or more <code>defaultTasks</code> can be set to run if the user doesn&#8217;t provide a specific task in the command line</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="19"></i><b>19</b></td>
+<td>The <code>mainClassName</code> sets the Groovy class to run when the Application plugin&#8217;s <code>run</code> is called. It&#8217;s also used when creating Jars.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="20"></i><b>20</b></td>
+<td>This is where I pin the version of Gradle I want to use</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="21"></i><b>21</b></td>
+<td>Most projects don&#8217;t write anything from scratch - in the <a href="https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html"><code>dependencies</code> section</a> I can indicate additional artifacts I need to perform various tasks (e.g. compilation or testing). These are downloaded from the repositories I set up earlier (JCenter).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="22"></i><b>22</b></td>
+<td>This configures the CodeNarc plugin - you&#8217;ll see the rule sets are in the <code>config/codenarc</code> directory</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When you look at your local copy of <code>build.gradle</code>, you&#8217;ll notice a number of inline comments that appear <code>//&lt;n&gt;</code>.
+These are used by the AsciiDoctor generator to aid in preparing this document - the comments don&#8217;t affect the build in any way.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Another convention for Gradle is the location of the source code files. As we&#8217;re using the <code>groovy</code> plugin, we place the
+Groovy source code under <code>src/main/groovy</code> and all tests written in Groovy in <code>src/test/groovy</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_try_out_the_gradle_gui">Try out the Gradle GUI</h4>
+<div class="paragraph">
+<p>If you&#8217;re new to Gradle, review the build via the gui: type the following commands in the same folder as
+<code>build.gradle</code> is located:</p>
+</div>
+<div class="paragraph">
+<p>For OS X, Linux and other *nix systems:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>./gradlew --gui</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For Windows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>gradlew.bat --gui</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gradle_tasks">Gradle tasks</h4>
+<div class="paragraph">
+<p>The Gradle build provides a number of interesting options. In Gradle these are called <em>tasks</em> and you can
+see all of the available tasks by running <code>./gradlew tasks</code>. Here are a few tasks worth trying out:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>./gradlew clean</code>: removes all of the generated files (it doesn&#8217;t delete the source code)</p>
+</li>
+<li>
+<p><code>./gradlew test jacoco</code>: will run all of the Spock tests and prepare a Jacoco report on the test coverage</p>
+</li>
+<li>
+<p><code>./gradlew check</code>: runs a <a href="http://codenarc.sourceforge.net/">CodeNarc</a> check and the <a href="http://spockframework.github.io/spock/docs/1.0/index.html">Spock tests</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can find the output of these checks/tests in the <code>build/publish/reports/</code> directory - check them out in your browser.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>./gradlew groovydoc</code>: will generate the GroovyDoc for the project</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The documentation is put into <code>build/docs/groovydoc/</code> and is best read in your browser</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>./gradlew assemble</code>: creates a number of outputs that make distributing your code possible:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>build/distributions/</code>: contains <code>tar</code> and <code>zip</code> archives that can be distributed to others, including handy scripts to start your application</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_Über_jar">The Über jar</h4>
+<div class="paragraph">
+<p>I&#8217;ve also added in the <a href="https://github.com/johnrengelman/shadow/">Gradle Shadow</a> plugin as it will create an über jar
+- one that hold the compiled codebase and all required libraries.
+To create this file, run <code>./gradlew shadowJar</code> and <code>build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code> will be created.
+Take the über jar out for a spin by running: <code>java -jar build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code>.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_using_the_command_line">Using the command line</h3>
@@ -770,12 +1046,12 @@ Take the über jar out for a spin by running: <code>java -jar build/libs/shapes-
 compiling and running the code from the command line. In order to do this you&#8217;ll want to have both a JDK and Groovy installed.</p>
 </div>
 <div class="paragraph">
-<p>The information provided here has been prepared on an OS X system
-so should also work in Linux systems. Windows users will most likely need to change the file paths.</p>
+<p>The information provided here has been prepared on an OS X system so should also work in Linux systems.
+Windows users will most likely need to change the file paths.</p>
 </div>
 <div class="paragraph">
-<p><em>Note:</em> All commands provided in this section are run from the base of the project distribution - that&#8217;s where this
-README file resides.</p>
+<p><em>Note:</em> All commands provided in this section are run from the base of the project distribution - that&#8217;s where the
+<code>build.gradle</code> file is located.</p>
 </div>
 <div class="paragraph">
 <p>To run the code using <code>groovy</code>:</p>
@@ -818,7 +1094,7 @@ jar cvf lib/Shapes.jar -C classes .</pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.1-DRAFT<br>
-Last updated 2015-09-17 09:32:56 +10:00
+Last updated 2015-09-21 06:24:38 +10:00
 </div>
 </div>
 </body>

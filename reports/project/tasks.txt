@@ -40,7 +40,6 @@ installDist - Installs the project as a distribution as-is.
 
 Documentation tasks
 -------------------
-asciidoctor - Converts AsciiDoc files and copies the output files and related resources to the build directory.
 groovydoc - Generates Groovydoc API documentation for the main source code.
 javadoc - Generates Javadoc API documentation for the main source code.
 
@@ -62,11 +61,6 @@ cleanIdea - Cleans IDEA project files (IML, IPR)
 eclipse - Generates all Eclipse files.
 idea - Generates IDEA project files (IML, IPR, IWS)
 
-Publishing tasks
-----------------
-collateForPublication - Collates all of the resources that will be used in the web-site for the tutorial
-publishGhPages - Publishes all gh-pages changes to Github
-
 Reporting tasks
 ---------------
 buildDashboard - Generates a dashboard of all the reports produced by this build.
@@ -85,6 +79,7 @@ test - Runs the unit tests.
 Other tasks
 -----------
 cleanIdeaWorkspace
+jacocoTestReport
 
 Rules
 -----

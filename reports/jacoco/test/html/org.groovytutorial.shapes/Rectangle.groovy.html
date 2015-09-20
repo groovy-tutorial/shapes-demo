@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Rectangle.groovy</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">shapes-demo</a> &gt; <a href="index.source.html" class="el_package">org.groovytutorial.shapes</a> &gt; <span class="el_source">Rectangle.groovy</span></div><h1>Rectangle.groovy</h1><pre class="source lang-java linenums">package org.groovytutorial.shapes
+
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+/**
+ * Describes a rectangle
+ *
+ * @author Duncan Dickinson
+ */
+@EqualsAndHashCode(includes = 'length,width')
+@ToString(includeNames = true, includeFields = true, includePackage = true)
+class Rectangle implements TwoDimensionalShape, Sides {
+
+    private static final String SHAPE_NAME = 'Rectangle'
+
+    /** The area of the rectangle */
+    final BigDecimal area
+
+    /**
+     *
+     * @param length
+     * @param width
+     * @throws IllegalArgumentException if one of the sides &lt;= 0
+     */
+    Rectangle(Number length, Number width) throws IllegalArgumentException {
+<span class="fc" id="L27">        a = length</span>
+<span class="fc" id="L28">        b = width</span>
+<span class="fc" id="L29">        c = length</span>
+<span class="fc" id="L30">        d = width</span>
+
+        //Calling this causes the Sides trait to calculate the perimeter
+        //and lock off its sideMap
+<span class="fc" id="L34">        this.perimeter</span>
+
+<span class="fc" id="L36">        this.area = length * width</span>
+    }
+
+    @Override
+    String getDisplayInfo() {
+<span class="nc" id="L41">        &quot;$SHAPE_NAME: length = $a; width = $b; perimeter = $perimeter; area = $area&quot;</span>
+    }
+
+    @Override
+    String getShapeName() {
+<span class="nc" id="L46">        SHAPE_NAME</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -6,15 +6,6 @@ Root project - A tutorial covering basic Gradle usage and OO-development in Groo
 archives - Configuration for archive artifacts.
 No dependencies
 
-asciidoctor
-+--- org.asciidoctor:asciidoctorj:1.5.1
-|    +--- org.slf4j:slf4j-api:1.7.5
-|    +--- org.jruby:jruby-complete:1.7.9
-|    \--- com.beust:jcommander:1.32
-\--- org.asciidoctor:asciidoctorj-groovy-dsl:1.0.0.preview2
-     +--- org.codehaus.groovy:groovy-all:1.8.9
-     \--- org.asciidoctor:asciidoctorj:1.5.1 (*)
-
 codenarc - The CodeNarc libraries to be used for this project.
 \--- org.codenarc:CodeNarc:0.24
      +--- junit:junit:4.8.1
@@ -40,6 +31,18 @@ compile - Compile classpath for source set 'main'.
 
 default - Configuration for default artifacts.
 \--- org.codehaus.groovy:groovy-all:2.4.4
+
+jacocoAgent - The Jacoco agent to use to get coverage data.
+\--- org.jacoco:org.jacoco.agent:0.7.1.201405082137
+
+jacocoAnt - The Jacoco ant tasks to use to get execute Gradle tasks.
+\--- org.jacoco:org.jacoco.ant:0.7.1.201405082137
+     +--- org.jacoco:org.jacoco.core:0.7.1.201405082137
+     |    \--- org.ow2.asm:asm-debug-all:5.0.1
+     +--- org.jacoco:org.jacoco.report:0.7.1.201405082137
+     |    +--- org.jacoco:org.jacoco.core:0.7.1.201405082137 (*)
+     |    \--- org.ow2.asm:asm-debug-all:5.0.1
+     \--- org.jacoco:org.jacoco.agent:0.7.1.201405082137
 
 runtime - Runtime classpath for source set 'main'.
 \--- org.codehaus.groovy:groovy-all:2.4.4
