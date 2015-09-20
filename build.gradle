@@ -4,6 +4,7 @@ plugins {
     id 'build-dashboard'
     id 'project-report'
     id 'codenarc'
+    id 'jacoco'
 
     //This is a handy plugin as it rolls everything into a single Jar file: https://github.com/johnrengelman/shadow/
     id 'com.github.johnrengelman.shadow' version '1.2.2'
