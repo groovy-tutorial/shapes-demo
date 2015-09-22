@@ -776,7 +776,7 @@ need to know more than is covered here.
 <h4 id="_review_the_build_file">Review the build file</h4>
 <div class="paragraph">
 <p>Gradle uses a number of conventions that, if you follow them, make life a little easier. The first such convention
-is that the file describe how to build a project is named <code>build.gradle</code> and placed in the root directory of the project.</p>
+is that the file describing how to build a project is named <code>build.gradle</code> and placed in the root directory of the project.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s take a look at the build file:</p>
@@ -814,14 +814,14 @@ project.ext {                           <i class="conum" data-value="12"></i><b>
 
 <span class="comment">//project.name is set in the settings.gradle file using: rootProject.name = 'shapes-demo'</span>
 project.with {  <i class="conum" data-value="17"></i><b>(17)</b>
-    group <span class="string"><span class="delimiter">'</span><span class="content">org.groovytutorial.shapes</span><span class="delimiter">'</span></span>
+    group <span class="string"><span class="delimiter">'</span><span class="content">org.groovy_tutorial.shapes</span><span class="delimiter">'</span></span>
     version <span class="string"><span class="delimiter">'</span><span class="content">1.0-SNAPSHOT</span><span class="delimiter">'</span></span>
     description = <span class="string"><span class="delimiter">'</span><span class="content">A tutorial covering basic Gradle usage and OO-development in Groovy</span><span class="delimiter">'</span></span>
 
     defaultTasks <span class="string"><span class="delimiter">'</span><span class="content">run</span><span class="delimiter">'</span></span>  <i class="conum" data-value="18"></i><b>(18)</b>
 
     <span class="comment">//This is the class that is called when using the &quot;run&quot; task</span>
-    mainClassName = <span class="string"><span class="delimiter">'</span><span class="content">org.groovytutorial.shapes.app.Main</span><span class="delimiter">'</span></span>    <i class="conum" data-value="19"></i><b>(19)</b>
+    mainClassName = <span class="string"><span class="delimiter">'</span><span class="content">org.groovy_tutorial.shapes.app.Main</span><span class="delimiter">'</span></span>    <i class="conum" data-value="19"></i><b>(19)</b>
 
     wrapper.gradleVersion = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>gradleVersion</span><span class="delimiter">&quot;</span></span>                <i class="conum" data-value="20"></i><b>(20)</b>
 }
@@ -1041,7 +1041,7 @@ see all of the available tasks by running <code>./gradlew tasks</code>. Here are
 <h4 id="_the_Über_jar">The Über jar</h4>
 <div class="paragraph">
 <p>I&#8217;ve also added in the <a href="https://github.com/johnrengelman/shadow/">Gradle Shadow</a> plugin as it will create an über jar
-- one that hold the compiled codebase and all required libraries.
+- one that holds the compiled codebase and all required libraries.
 To create this file, run <code>./gradlew shadowJar</code> and <code>build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code> will be created.
 Take the über jar out for a spin by running: <code>java -jar build/libs/shapes-demo-1.0-SNAPSHOT-all.jar</code>.</p>
 </div>
@@ -1075,7 +1075,7 @@ Windows users will most likely need to change the file paths.</p>
 <div class="literalblock">
 <div class="content">
 <pre>groovyc -d classes src/main/groovy/org/groovytutorial/shapes/*.groovy src/main/groovy/org/groovytutorial/shapes/app/*.groovy src/main/groovy/org/groovytutorial/shapes/triangle/*.groovy
-java -cp lib/groovy-all-2.4.4.jar:classes/ org.groovytutorial.shapes.app.Main</pre>
+java -cp lib/groovy-all-2.4.4.jar:classes/ org.groovy_tutorial.shapes.app.Main</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1092,7 +1092,7 @@ jar cvf lib/Shapes.jar -C classes .</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>java -cp lib/groovy-all-2.4.4.jar:lib/Shapes.jar org.groovytutorial.shapes.app.Main</pre>
+<pre>java -cp lib/groovy-all-2.4.4.jar:lib/Shapes.jar org.groovy_tutorial.shapes.app.Main</pre>
 </div>
 </div>
 </div>
@@ -1102,7 +1102,7 @@ jar cvf lib/Shapes.jar -C classes .</pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.1-DRAFT<br>
-Last updated 2015-09-21 06:36:44 +10:00
+Last updated 2015-09-22 11:41:30 +10:00
 </div>
 </div>
 </body>

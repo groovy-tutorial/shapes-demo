@@ -4,17 +4,17 @@ Root project - A tutorial covering basic Gradle usage and OO-development in Groo
 ------------------------------------------------------------
 
 allprojects: [root project 'shapes-demo']
-ant: org.gradle.api.internal.project.DefaultAntBuilder@31455035
-antBuilderFactory: org.gradle.api.internal.project.DefaultAntBuilderFactory@14b1f7f
+ant: org.gradle.api.internal.project.DefaultAntBuilder@66150d19
+antBuilderFactory: org.gradle.api.internal.project.DefaultAntBuilderFactory@1066108a
 applicationDefaultJvmArgs: []
-applicationDistribution: org.gradle.api.internal.file.copy.DefaultCopySpec_Decorated@74441922
+applicationDistribution: org.gradle.api.internal.file.copy.DefaultCopySpec_Decorated@15273e02
 applicationName: shapes-demo
 archivesBaseName: shapes-demo
-artifacts: org.gradle.api.internal.artifacts.dsl.DefaultArtifactHandler_Decorated@6c54123c
-asDynamicObject: org.gradle.api.internal.ExtensibleDynamicObject@778b337b
+artifacts: org.gradle.api.internal.artifacts.dsl.DefaultArtifactHandler_Decorated@6d48eeb5
+asDynamicObject: org.gradle.api.internal.ExtensibleDynamicObject@237b5bc0
 assemble: task ':assemble'
 assembleDist: task ':assembleDist'
-baseClassLoaderScope: org.gradle.api.internal.initialization.DefaultClassLoaderScope@2ee27a12
+baseClassLoaderScope: org.gradle.api.internal.initialization.DefaultClassLoaderScope@339fd65
 binaries: [classes 'main', classes 'test']
 build: task ':build'
 buildDashboard: task ':buildDashboard'
@@ -22,12 +22,12 @@ buildDependents: task ':buildDependents'
 buildDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build
 buildFile: /Users/slavinson/Development/groovy-guides/shapes-demo/build.gradle
 buildNeeded: task ':buildNeeded'
-buildScriptSource: org.gradle.groovy.scripts.UriScriptSource@7a3bfbe5
-buildscript: org.gradle.api.internal.initialization.DefaultScriptHandler@36b2c36c
+buildScriptSource: org.gradle.groovy.scripts.UriScriptSource@2f42142e
+buildscript: org.gradle.api.internal.initialization.DefaultScriptHandler@5556a35
 check: task ':check'
 childProjects: {}
 class: class org.gradle.api.internal.project.DefaultProject_Decorated
-classLoaderScope: org.gradle.api.internal.initialization.DefaultClassLoaderScope@180c3e2a
+classLoaderScope: org.gradle.api.internal.initialization.DefaultClassLoaderScope@7c099404
 classes: task ':classes'
 cleanEclipse: task ':cleanEclipse'
 cleanEclipseClasspath: task ':cleanEclipseClasspath'
@@ -38,21 +38,21 @@ cleanIdeaModule: task ':cleanIdeaModule'
 cleanIdeaProject: task ':cleanIdeaProject'
 cleanIdeaWorkspace: task ':cleanIdeaWorkspace'
 codeNarcVersion: 0.24
-codenarc: org.gradle.api.plugins.quality.CodeNarcExtension_Decorated@734a662f
+codenarc: org.gradle.api.plugins.quality.CodeNarcExtension_Decorated@427e6c27
 codenarcMain: task ':codenarcMain'
 codenarcTest: task ':codenarcTest'
 compileGroovy: task ':compileGroovy'
 compileJava: task ':compileJava'
 compileTestGroovy: task ':compileTestGroovy'
 compileTestJava: task ':compileTestJava'
-components: [org.gradle.api.internal.java.JavaLibrary@2503f5d3, com.github.jengelman.gradle.plugins.shadow.ShadowJavaPlugin$ShadowJavaLibrary@42d645]
-configurationActions: org.gradle.configuration.project.DefaultProjectConfigurationActionContainer@204bdc82
+components: [org.gradle.api.internal.java.JavaLibrary@30978c35, com.github.jengelman.gradle.plugins.shadow.ShadowJavaPlugin$ShadowJavaLibrary@f4b1d6d]
+configurationActions: org.gradle.configuration.project.DefaultProjectConfigurationActionContainer@21e1ca73
 configurations: [configuration ':archives', configuration ':codenarc', configuration ':compile', configuration ':default', configuration ':jacocoAgent', configuration ':jacocoAnt', configuration ':runtime', configuration ':shadow', configuration ':testCompile', configuration ':testRuntime']
-convention: org.gradle.api.internal.plugins.DefaultConvention@594f5bcf
-defaultArtifacts: org.gradle.api.internal.plugins.DefaultArtifactPublicationSet_Decorated@63589058
+convention: org.gradle.api.internal.plugins.DefaultConvention@11f8d3ff
+defaultArtifacts: org.gradle.api.internal.plugins.DefaultArtifactPublicationSet_Decorated@1d0213d1
 defaultTasks: [run]
-deferredProjectConfiguration: org.gradle.api.internal.project.DeferredProjectConfiguration@75be8288
-dependencies: org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler_Decorated@33a244dc
+deferredProjectConfiguration: org.gradle.api.internal.project.DeferredProjectConfiguration@4a75d569
+dependencies: org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler_Decorated@647fdb42
 dependencyCacheDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/dependency-cache
 dependencyCacheDirName: dependency-cache
 dependencyReport: task ':dependencyReport'
@@ -62,87 +62,87 @@ distShadowTar: task ':distShadowTar'
 distShadowZip: task ':distShadowZip'
 distTar: task ':distTar'
 distZip: task ':distZip'
-distributions: [org.gradle.api.distribution.internal.DefaultDistribution_Decorated@befff71]
+distributions: [org.gradle.api.distribution.internal.DefaultDistribution_Decorated@65e83c06]
 distsDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/distributions
 distsDirName: distributions
 docsDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/docs
 docsDirName: docs
-eclipse: org.gradle.plugins.ide.eclipse.model.EclipseModel_Decorated@285d4ce0
+eclipse: org.gradle.plugins.ide.eclipse.model.EclipseModel_Decorated@32d87c6f
 eclipseClasspath: task ':eclipseClasspath'
 eclipseJdt: task ':eclipseJdt'
 eclipseProject: task ':eclipseProject'
-ext: org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension@fa0c3e3
-extensions: org.gradle.api.internal.plugins.DefaultConvention@594f5bcf
-fileOperations: org.gradle.api.internal.file.DefaultFileOperations@e0baa5d
-fileResolver: org.gradle.api.internal.file.BaseDirFileResolver@7a6bc89a
+ext: org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension@3fc97d7e
+extensions: org.gradle.api.internal.plugins.DefaultConvention@11f8d3ff
+fileOperations: org.gradle.api.internal.file.DefaultFileOperations@5bf32973
+fileResolver: org.gradle.api.internal.file.BaseDirFileResolver@7fdf2607
 gradle: build 'shapes-demo'
 gradleVersion: 2.7
-groovyRuntime: org.gradle.api.tasks.GroovyRuntime_Decorated@3893b17b
+groovyRuntime: org.gradle.api.tasks.GroovyRuntime_Decorated@e151697
 groovyVersion: 2.4.4
 groovydoc: task ':groovydoc'
-group: org.groovytutorial.shapes
+group: org.groovy_tutorial.shapes
 htmlDependencyReport: task ':htmlDependencyReport'
-idea: org.gradle.plugins.ide.idea.model.IdeaModel_Decorated@3125c251
+idea: org.gradle.plugins.ide.idea.model.IdeaModel_Decorated@7ac3a8a6
 ideaModule: task ':ideaModule'
 ideaProject: task ':ideaProject'
 ideaWorkspace: task ':ideaWorkspace'
-inheritedScope: org.gradle.api.internal.ExtensibleDynamicObject$InheritedDynamicObject@622fcf6a
+inheritedScope: org.gradle.api.internal.ExtensibleDynamicObject$InheritedDynamicObject@38b9ae3c
 installApp: task ':installApp'
 installDist: task ':installDist'
 installShadowApp: task ':installShadowApp'
-jacoco: org.gradle.testing.jacoco.plugins.JacocoPluginExtension_Decorated@4624e4ad
+jacoco: org.gradle.testing.jacoco.plugins.JacocoPluginExtension_Decorated@3ed04832
 jacocoTestReport: task ':jacocoTestReport'
 jar: task ':jar'
 javadoc: task ':javadoc'
 knows: task ':knows'
 libsDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/libs
 libsDirName: libs
-logger: org.gradle.logging.internal.slf4j.OutputEventListenerBackedLogger@a6af8c
-logging: org.gradle.logging.internal.DefaultLoggingManager@63198d7b
-mainClassName: org.groovytutorial.shapes.app.Main
-modelRegistry: org.gradle.model.internal.registry.DefaultModelRegistry@7cb1ec03
-modelSchemaStore: org.gradle.model.internal.manage.schema.extract.DefaultModelSchemaStore@58d3786f
-module: org.gradle.api.internal.artifacts.ProjectBackedModule@21873e33
+logger: org.gradle.logging.internal.slf4j.OutputEventListenerBackedLogger@6e2ec7f4
+logging: org.gradle.logging.internal.DefaultLoggingManager@185740d1
+mainClassName: org.groovy_tutorial.shapes.app.Main
+modelRegistry: org.gradle.model.internal.registry.DefaultModelRegistry@7fb65de5
+modelSchemaStore: org.gradle.model.internal.manage.schema.extract.DefaultModelSchemaStore@590d7743
+module: org.gradle.api.internal.artifacts.ProjectBackedModule@6e2ae3f1
 name: shapes-demo
 org.gradle.daemon: true
 parent: null
 parentIdentifier: null
 path: :
-pluginManager: org.gradle.api.internal.plugins.DefaultPluginManager_Decorated@60792860
-plugins: [org.gradle.api.plugins.HelpTasksPlugin@124a4a32, com.github.jengelman.gradle.plugins.shadow.ShadowBasePlugin@7f4ab519, com.github.jengelman.gradle.plugins.shadow.ShadowPlugin@222481ba, org.gradle.language.base.plugins.LifecycleBasePlugin@2e3f9393, org.gradle.api.plugins.BasePlugin@472167db, org.gradle.api.plugins.ReportingBasePlugin@5ee9b561, org.gradle.language.base.plugins.LanguageBasePlugin@5fef9a2b, org.gradle.api.plugins.LegacyJavaComponentPlugin@23b9b424, org.gradle.api.plugins.JavaBasePlugin@4d9df7d6, org.gradle.api.plugins.GroovyBasePlugin@3152aa4d, org.gradle.api.plugins.JavaPlugin@5b538d82, com.github.jengelman.gradle.plugins.shadow.ShadowJavaPlugin@7e9015b, org.gradle.api.plugins.GroovyPlugin@2cfe0e0e, org.gradle.api.distribution.plugins.DistributionPlugin@675daac9, org.gradle.api.plugins.ApplicationPlugin@253b0623, com.github.jengelman.gradle.plugins.shadow.ShadowApplicationPlugin@7189041e, org.gradle.api.reporting.plugins.BuildDashboardPlugin@5ed9734c, org.gradle.api.plugins.ProjectReportsPlugin@2e68df4f, org.gradle.api.plugins.quality.CodeNarcPlugin@215f26e6, org.gradle.testing.jacoco.plugins.JacocoPlugin@73b53995, org.gradle.plugins.ide.eclipse.EclipsePlugin@4cbb78b, org.gradle.plugins.ide.idea.IdeaPlugin@4ed3d1aa]
-processOperations: org.gradle.api.internal.file.DefaultFileOperations@e0baa5d
+pluginManager: org.gradle.api.internal.plugins.DefaultPluginManager_Decorated@a0bd461
+plugins: [org.gradle.api.plugins.HelpTasksPlugin@6a043656, com.github.jengelman.gradle.plugins.shadow.ShadowBasePlugin@37c48321, com.github.jengelman.gradle.plugins.shadow.ShadowPlugin@63461ec0, org.gradle.language.base.plugins.LifecycleBasePlugin@565d2cb, org.gradle.api.plugins.BasePlugin@178e6aea, org.gradle.api.plugins.ReportingBasePlugin@445ac40d, org.gradle.language.base.plugins.LanguageBasePlugin@789a0433, org.gradle.api.plugins.LegacyJavaComponentPlugin@1810bac4, org.gradle.api.plugins.JavaBasePlugin@31ad1ea1, org.gradle.api.plugins.GroovyBasePlugin@4ebbfb44, org.gradle.api.plugins.JavaPlugin@cf55463, com.github.jengelman.gradle.plugins.shadow.ShadowJavaPlugin@1da73944, org.gradle.api.plugins.GroovyPlugin@65796d13, org.gradle.api.distribution.plugins.DistributionPlugin@1b35838f, org.gradle.api.plugins.ApplicationPlugin@460023fe, com.github.jengelman.gradle.plugins.shadow.ShadowApplicationPlugin@698d9073, org.gradle.api.reporting.plugins.BuildDashboardPlugin@33fdee35, org.gradle.api.plugins.ProjectReportsPlugin@62c14a1a, org.gradle.api.plugins.quality.CodeNarcPlugin@5c32fa92, org.gradle.testing.jacoco.plugins.JacocoPlugin@1b28f071, org.gradle.plugins.ide.eclipse.EclipsePlugin@5cd11d0b, org.gradle.plugins.ide.idea.IdeaPlugin@37f2692a]
+processOperations: org.gradle.api.internal.file.DefaultFileOperations@5bf32973
 processResources: task ':processResources'
 processTestResources: task ':processTestResources'
 project: root project 'shapes-demo'
 projectDir: /Users/slavinson/Development/groovy-guides/shapes-demo
 projectEvaluationBroadcaster: ProjectEvaluationListener broadcast
-projectEvaluator: org.gradle.configuration.project.LifecycleProjectEvaluator@199b94e
-projectRegistry: org.gradle.api.internal.project.DefaultProjectRegistry@2ec49e53
+projectEvaluator: org.gradle.configuration.project.LifecycleProjectEvaluator@36269cca
+projectRegistry: org.gradle.api.internal.project.DefaultProjectRegistry@14d51317
 projectReport: task ':projectReport'
 projectReportDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/reports/project
 projectReportDirName: project
 projects: [root project 'shapes-demo']
 properties: {...}
 propertyReport: task ':propertyReport'
-reporting: org.gradle.api.reporting.ReportingExtension_Decorated@5de6be7c
+reporting: org.gradle.api.reporting.ReportingExtension_Decorated@59413d1d
 reportsDir: /Users/slavinson/Development/groovy-guides/shapes-demo/build/reports
-repositories: [org.gradle.api.internal.artifacts.repositories.DefaultMavenArtifactRepository_Decorated@74f5b788]
-resources: org.gradle.api.internal.resources.DefaultResourceHandler@386a3391
+repositories: [org.gradle.api.internal.artifacts.repositories.DefaultMavenArtifactRepository_Decorated@dbd5288]
+resources: org.gradle.api.internal.resources.DefaultResourceHandler@fff4f39
 rootDir: /Users/slavinson/Development/groovy-guides/shapes-demo
 rootProject: root project 'shapes-demo'
 run: task ':run'
 runShadow: task ':runShadow'
-scriptHandlerFactory: org.gradle.api.internal.initialization.DefaultScriptHandlerFactory@325604c9
-scriptPluginFactory: org.gradle.configuration.DefaultScriptPluginFactory@5aab49a1
-serviceRegistryFactory: org.gradle.internal.service.scopes.ProjectScopeServices$4@3bbec8b
+scriptHandlerFactory: org.gradle.api.internal.initialization.DefaultScriptHandlerFactory@330ea87a
+scriptPluginFactory: org.gradle.configuration.DefaultScriptPluginFactory@6377c2d3
+serviceRegistryFactory: org.gradle.internal.service.scopes.ProjectScopeServices$4@439f527
 services: ProjectScopeServices
-shadow: com.github.jengelman.gradle.plugins.shadow.ShadowExtension_Decorated@6a24b1d6
+shadow: com.github.jengelman.gradle.plugins.shadow.ShadowExtension_Decorated@714af41e
 shadowJar: task ':shadowJar'
 sourceCompatibility: 1.8
 sourceSets: [source set 'main', source set 'test']
 sources: [Java source 'main:java', JVM resources 'main:resources', Java source 'test:java', JVM resources 'test:resources']
 spockVersion: 1.0-groovy-2.4
-standardOutputCapture: org.gradle.logging.internal.DefaultLoggingManager@63198d7b
+standardOutputCapture: org.gradle.logging.internal.DefaultLoggingManager@185740d1
 startScripts: task ':startScripts'
 startShadowScripts: task ':startShadowScripts'
 state: project state 'EXECUTED'
