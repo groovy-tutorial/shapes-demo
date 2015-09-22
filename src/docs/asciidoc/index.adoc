@@ -212,7 +212,7 @@ To run the code using `groovy`:
 To compile the classes to bytecode and run with Java we need to use `groovyc`:
 
     groovyc -d classes src/main/groovy/org/groovytutorial/shapes/*.groovy src/main/groovy/org/groovytutorial/shapes/app/*.groovy src/main/groovy/org/groovytutorial/shapes/triangle/*.groovy
-    java -cp lib/groovy-all-2.4.4.jar:classes/ org.groovytutorial.shapes.app.Main
+    java -cp lib/groovy-all-2.4.4.jar:classes/ org.groovy_tutorial.shapes.app.Main
 
 To create a Jar:
 
@@ -221,4 +221,4 @@ To create a Jar:
 
 To run the Jar:
 
-    java -cp lib/groovy-all-2.4.4.jar:lib/Shapes.jar org.groovytutorial.shapes.app.Main
+    java -cp lib/groovy-all-2.4.4.jar:lib/Shapes.jar org.groovy_tutorial.shapes.app.Main
